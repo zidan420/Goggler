@@ -39,38 +39,57 @@ ini_set('display_errors', 1);
 		return "$scheme://$abs_url";
 	}
 
+	function url2host($link){
+		extract(parse_url($link));
+		return "$scheme://$host";
+	}
+
 	/* Base URL */
-	$url = "https://hianime.to";
+	$base_url = "https://suninme.org/best-websites";
+	$max_pages = 10;
+	$max_url = 3;
+	$url_crawled = 0;
 	
 	$de_url = new SplQueue();
-
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
+	/* return response as string instead of directly printing to browser */
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	$response = curl_exec($ch);
 	
-	$pattern = "/href=\"(.+?)\"/";
-	if (preg_match_all($pattern, $response, $matches)){
-		foreach ($matches[1] as $href) {
-			$full_url = rel2abs($url, $href);
-			echo $href."  -->  ".$full_url."<br>";
+	while ($url_crawled != $max_url){
+		curl_setopt($ch, CURLOPT_URL, $base_url);
+		$response = curl_exec($ch);
 
-			/* Enqueue URL */
-			$de_url[] = $full_url;
+		/* Search for links inside href */
+		$pattern = "/href=\"(.+?)\"/";
+		if (preg_match_all($pattern, $response, $matches)){
+			foreach ($matches[1] as $href) {
+				$full_url = rel2abs($base_url, $href);
+				echo $href."  -->  ".$full_url."\n";
+
+				$count_url = $db->check_url_count(url2host($full_url)."%");
+				if ($count_url != $max_pages){
+					/* Store the URL to database */
+					echo "Inserting $full_url\n";
+					$db->insert_data($full_url);
+					/* Enqueue URL */
+					$de_url[] = $full_url;
+
+					/* Increase the count for new host only */
+					if ($count_url == 0){
+						$url_crawled += 1;
+						if ($url_crawled == $max_url) break;
+					}
+				}
+			}
+		}
+
+		if (!$de_url->isEmpty()) {
+			$base_url = $de_url->dequeue();
 		}
 	}
 
-	while (!$de_url->isEmpty()) {
-		$next_url = $de_url->dequeue();
-		$db->insert_data($next_url);
-	}
 	$result = $db->query_all();
-	if ($result->num_rows > 0){
-		echo "$result->num_rows results<br>";
-	}
-	else echo "0 results<br>";
-
-	if ($db->url_exists("https://hianime.to/community/board")) echo "link exists<br>";
+	echo "$result->num_rows results\n";
 
 	$db->delete_all();
 
