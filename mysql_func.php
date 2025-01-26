@@ -38,15 +38,14 @@
 			return $result;
 		}
 
-		function url_exists($link){
-			$query = "SELECT * FROM $this->table WHERE URL='$link'";
+		function check_url_count($link){
+			$query = "SELECT * FROM $this->table WHERE URL LIKE '$link'";
 			$result = $this->conn->query($query);
 			if (!$result){
 				echo "Error: ".$query."<br>".$this->conn->error;
 				return false;
 			}
-			else if ($result->num_rows == 1) return true;
-			else return false;
+			return $result->num_rows;
 		}
 	}
 ?>
