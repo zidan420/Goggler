@@ -91,6 +91,6 @@ ini_set('display_errors', 1);
 	$result = $db->query_all();
 	echo "$result->num_rows results\n";
 
-	$db->delete_all();
+	// $db->delete_all();
 
 ?>
