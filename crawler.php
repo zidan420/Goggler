@@ -1,8 +1,11 @@
 <?php
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-	require 'mysql_func.php';
+	require_once 'stop_words.php';
+	require_once 'mysql_func.php';
+	require_once 'process_dom.php';
 
 	/* Connect Database */
 	$config_file = parse_ini_file("config.ini");
@@ -46,51 +49,74 @@ ini_set('display_errors', 1);
 
 	/* Base URL */
 	$base_url = "https://suninme.org/best-websites";
-	$max_pages = 10;
-	$max_url = 3;
-	$url_crawled = 0;
-	
+	$max_pages = 2;
+	$max_url = 10;
+	$url_crawled = 1;
 	$de_url = new SplQueue();
+	$max_url_reached = false;
+
 	$ch = curl_init();
 	/* return response as string instead of directly printing to browser */
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HEADER, true);
 	
-	while ($url_crawled != $max_url){
+	$de_url[] = $base_url;
+	while (!$de_url->isEmpty()){
+		$base_url = $de_url->dequeue();
+
 		curl_setopt($ch, CURLOPT_URL, $base_url);
 		$response = curl_exec($ch);
 
-		/* Search for links inside href */
+		/* Extract Headers */
+		$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+		$headers = substr($response, 0, $header_size);
+
+		/* Extract Body */
+		$body = substr($response, $header_size);
+
+		/* Store the URL, hash and ID (auto-generated) to database */
+		echo "Inserting $base_url<br>";
+		$db->insert_data(["URL" => "$base_url", "hash" => md5($body)], "CrawlerData");
+
+		/* Skip non-text files */
+		if (!preg_match("#Content-Type\s*:\s*text/html#i", $headers)) continue;
+
+		/* Map all relevant words to this URL */
+		$process_dom = new ProcessDom($body);
+		$keywords = $process_dom->extractKeywords();
+		foreach ($keywords as $keyword){
+			if (!in_array($keyword, $stop_words)){
+				$ID = $db->getID($base_url, 'CrawlerData');
+				$db->insert_data(["WORD" => "$keyword", "ID" => "$ID"], "Crawler");
+			}
+		}
+
+		/* Search for href attributes inside base_url */
 		$pattern = "/href=\"(.+?)\"/";
-		if (preg_match_all($pattern, $response, $matches)){
+		if (preg_match_all($pattern, $body, $matches)){
 			foreach ($matches[1] as $href) {
 				$full_url = rel2abs($base_url, $href);
-				echo $href."  -->  ".$full_url."\n";
+				echo $href."  -->  ".$full_url."<br>";
 
-				$count_url = $db->check_url_count(url2host($full_url)."%");
-				if ($count_url != $max_pages){
-					/* Store the URL to database */
-					echo "Inserting $full_url\n";
-					$db->insert_data($full_url);
+				/* Count No. of times a URL (Domain) occurs in database */
+				$count_url = $db->check_url_count(url2host($full_url)."%", "CrawlerData");
+				if ($count_url != $max_pages && !$max_url_reached){
 					/* Enqueue URL */
 					$de_url[] = $full_url;
 
 					/* Increase the count for new host only */
 					if ($count_url == 0){
 						$url_crawled += 1;
-						if ($url_crawled == $max_url) break;
+						if ($url_crawled == $max_url) $max_url_reached = true;
 					}
 				}
 			}
-		}
-
-		if (!$de_url->isEmpty()) {
-			$base_url = $de_url->dequeue();
 		}
 	}
 
 	$result = $db->query_all();
 	echo "$result->num_rows results\n";
 
-	// $db->delete_all();
+	#$db->delete_all();
 
 ?>
