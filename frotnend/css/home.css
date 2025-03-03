@@ -1,0 +1,77 @@
+/* Hero Section */
+.hero {
+    flex: 1; /* Takes up remaining space */
+    padding: 50px 0;
+}
+
+/* Logo Container */
+.logo-container {
+    text-align: center;
+}
+
+.logo-container img {
+    max-width: 250px;
+    height: auto;
+}
+
+/* Text-based logo (if no image) */
+.logo-container h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Cyan glow */
+}
+
+/* Search Form */
+.search-form {
+    max-width: 600px;
+}
+
+.form-control {
+    border: 2px solid #00FFFF; /* Neon cyan */
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #FFFFFF;
+    background: transparent;
+}
+
+.form-control::placeholder {
+    color: #A9A9A9; /* Dark gray */
+}
+
+.btn-search {
+    background: transparent;
+    border: none;
+    color: #00FFFF; /* Neon cyan */
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.btn-search:hover {
+    color: #8A2BE2; /* Purple */
+}
+
+/* Tagline */
+.tagline {
+    font-size: 16px;
+    color: #D3D3D3; /* Silver */
+}
+
+/* Responsive Adjustments for Homepage */
+@media (max-width: 768px) {
+    .logo-container {
+        margin-bottom: 20px;
+    }
+    .logo-container img {
+        max-width: 150px;
+    }
+    .logo-container h1 {
+        font-size: 32px;
+    }
+    .search-form {
+        max-width: 80%;
+    }
+}
+
