@@ -97,8 +97,8 @@ main {
 /* Buttons */
 button {
   border-radius: 20px;
-  border: 1px solid #00ffff;
-  background-color: #00ffff;
+  border: 1px solid #333;
+  background-color: #333;
   color: white;
   font-size: 12px;
   font-weight: bold;
@@ -107,6 +107,10 @@ button {
   text-transform: uppercase;
   transition: transform 80ms ease-in;
   cursor: pointer;
+}
+button:hover {
+  border: 1px solid #00ffff;
+  background-color: #00ffff;
 }
 
 button:active {
@@ -119,10 +123,12 @@ button:focus {
 
 button.ghost {
   background: transparent;
-  border-color: #ffffff;
+  border: 1px solid white;
   color: #ffffff;
 }
-
+button.ghost:hover {
+  background-color: #333;
+}
 /* Overlay container */
 .overlay-container {
   position: absolute;
