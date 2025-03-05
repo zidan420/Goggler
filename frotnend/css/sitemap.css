@@ -1,0 +1,71 @@
+/* Sitemap Section */
+.sitemap-section {
+    flex: 1; /* Takes remaining space */
+    padding: 50px 0;
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 36px;
+    color: #FFFFFF;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: #D3D3D3;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sitemap-form {
+    max-width: 600px;
+}
+
+.form-control {
+    border: 2px solid #00FFFF; /* Neon cyan */
+    border-radius: 50px 0 0 50px; /* Rounded left side */
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #FFFFFF;
+    background: transparent;
+}
+
+.form-control::placeholder {
+    color: #A9A9A9;
+}
+
+.btn-submit {
+    background: #00FFFF; /* Neon cyan */
+    border: none;
+    border-radius: 0 50px 50px 0; /* Rounded right side */
+    color: #1E2A44; /* Dark blue text */
+    font-size: 18px;
+    padding: 10px 20px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn-submit:hover {
+    background: #8A2BE2; /* Purple */
+    color: #FFFFFF;
+}
+
+.submission-message {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .sitemap-form {
+        max-width: 80%;
+    }
+    .section-title {
+        font-size: 28px;
+    }
+    .section-subtitle {
+        font-size: 16px;
+    }
+}
