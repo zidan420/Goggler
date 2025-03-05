@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goggler Settings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: #202124;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 32px;
+            border-bottom: 1px solid #dadce0;
+        }
+
+        .logo {
+            font-size: 24px;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+
+        .settings-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .nav-column {
+            width: 200px;
+            padding-right: 40px;
+        }
+
+        .nav-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-bottom: 4px;
+        }
+
+        .nav-item.active {
+            background-color: #f6fafe;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+
+        .nav-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .settings-content {
+            flex: 1;
+            padding-left: 40px;
+        }
+
+        .settings-section {
+            display: none;
+            margin-bottom: 32px;
+        }
+
+        .settings-section.active {
+            display: block;
+        }
+
+        .setting-card {
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .setting-title {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #202124;
+        }
+
+        .setting-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 24px;
+            margin-right: 16px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #1a73e8;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(16px);
+        }
+
+        .footer {
+            border-top: 1px solid #dadce0;
+            padding: 24px 32px;
+            display: flex;
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #5f6368;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Goggler</div>
+        <div class="profile">⚙️</div>
+    </div>
+
+    <div class="settings-container">
+        <div class="nav-column">
+            <div class="nav-item active" data-section="search-settings">Search Settings</div>
+            <div class="nav-item" data-section="privacy">Privacy</div>
+            <div class="nav-item" data-section="appearance">Appearance</div>
+            <div class="nav-item" data-section="languages">Languages</div>
+        </div>
+
+        <div class="settings-content">
+            <div id="search-settings" class="settings-section active">
+                <div class="setting-card">
+                    <h2 class="setting-title">Search Settings</h2>
+                    <div class="setting-option">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <span>Safe Search</span>
+                    </div>
+                    <div class="setting-option">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                        <span>Autocomplete suggestions</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="privacy" class="settings-section">
+                <div class="setting-card">
+                    <h2 class="setting-title">Privacy Settings</h2>
+                    <div class="setting-option">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                        <span>Search History</span>
+                    </div>
+                    <div class="setting-option">
+                        <label>Clear History After:</label>
+                        <input type="range" min="1" max="30" value="7" class="slider">
+                        <span id="daysValue">7 days</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="appearance" class="settings-section">
+                <div class="setting-card">
+                    <h2 class="setting-title">Appearance</h2>
+                    <div class="setting-option">
+                        <label class="switch">
+                            <input type="checkbox" id="darkModeToggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span>Dark Mode</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="languages" class="settings-section">
+                <div class="setting-card">
+                    <h2 class="setting-title">Language Settings</h2>
+                    <div class="setting-option">
+                        <select>
+                            <option>English</option>
+                            <option>Spanish</option>
+                            <option>French</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Help</a>
+    </div>
+
+    <script>
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelector('.nav-item.active').classList.remove('active');
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelector('.settings-section.active').classList.remove('active');
+                document.getElementById(section).classList.add('active');
+            });
+        });
+
+        document.querySelector('input[type="range"]').addEventListener('input', function() {
+            document.getElementById('daysValue').textContent = `${this.value} days`;
+        });
+
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('change', function() {
+            document.body.style.backgroundColor = this.checked ? '#202124' : '#fff';
+            document.body.style.color = this.checked ? '#fff' : '#202124';
+        });
+    </script>
+</body>
+</html>
