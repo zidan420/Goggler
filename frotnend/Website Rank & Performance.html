@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)file:///Users/rafsanmallik/Desktop/rank.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Rank &amp; Performance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0d1b2a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px cyan;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+        }
+        input {
+            width: 70%;
+            background: black;
+            color: white;
+            border: 1px solid cyan;
+        }
+        button {
+            background: cyan;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Website Rank &amp; Performance Checker</h2>
+        <input type="text" id="websiteUrl" placeholder="Enter website URL">
+        <button onclick="checkPerformance()">Check</button>
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        function checkPerformance() {
+            let website = document.getElementById("websiteUrl").value.trim();
+            if (!website) return alert("Please enter a valid website URL");
+            
+            // Simulated data (replace with actual API calls)
+            let rank = Math.floor(Math.random() * 1000) + 1; // Random rank
+            let loadTime = (Math.random() * 3).toFixed(2) + " sec"; // Random load time
+            let score = Math.floor(Math.random() * 100) + "%"; // Random performance score
+            
+            document.getElementById("result").innerHTML = `
+                <h3>Results for: ${website}</h3>
+                <p><strong>Global Rank:</strong> #${rank}</p>
+                <p><strong>Load Time:</strong> ${loadTime}</p>
+                <p><strong>Performance Score:</strong> ${score}</p>
+            `;
+            document.getElementById("result").style.display = "block";
+        }
+    </script>
+
+
+</body></html>
