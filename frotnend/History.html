@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)file:///Users/rafsanmallik/Desktop/google.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #0d1b2a, #1b263b);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            width: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+        h2 {
+            text-align: center;
+            font-size: 24px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid cyan;
+            border-radius: 50px;
+            background: transparent;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .history-item a {
+            color: cyan;
+            text-decoration: none;
+        }
+        .history-item button {
+            background: cyan;
+            color: black;
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .history-item button:hover {
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>History</h2>
+        <input type="text" id="search" placeholder="Search history..." onkeyup="filterHistory()">
+        <div id="history-list"><div class="history-item">
+                    <a href="https://www.google.com/" target="_blank">Google</a>
+                    <button onclick="deleteHistory(1)">Delete</button>
+                </div><div class="history-item">
+                    <a href="https://www.youtube.com/" target="_blank">YouTube</a>
+                    <button onclick="deleteHistory(2)">Delete</button>
+                </div><div class="history-item">
+                    <a href="https://openai.com/" target="_blank">OpenAI</a>
+                    <button onclick="deleteHistory(3)">Delete</button>
+                </div><div class="history-item">
+                    <a href="https://github.com/" target="_blank">GitHub</a>
+                    <button onclick="deleteHistory(4)">Delete</button>
+                </div></div>
+    </div>
+
+    <script>
+        let historyData = [
+            { id: 1, title: "Google", url: "https://www.google.com" },
+            { id: 2, title: "YouTube", url: "https://www.youtube.com" },
+            { id: 3, title: "OpenAI", url: "https://openai.com" },
+            { id: 4, title: "GitHub", url: "https://github.com" }
+        ];
+
+        function loadHistory() {
+            let historyList = document.getElementById("history-list");
+            historyList.innerHTML = "";
+            historyData.forEach(item => {
+                let div = document.createElement("div");
+                div.classList.add("history-item");
+                div.innerHTML = `
+                    <a href="${item.url}" target="_blank">${item.title}</a>
+                    <button onclick="deleteHistory(${item.id})">Delete</button>
+                `;
+                historyList.appendChild(div);
+            });
+        }
+
+        function filterHistory() {
+            let searchQuery = document.getElementById("search").value.toLowerCase();
+            let filteredData = historyData.filter(item => item.title.toLowerCase().includes(searchQuery));
+            document.getElementById("history-list").innerHTML = "";
+            filteredData.forEach(item => {
+                let div = document.createElement("div");
+                div.classList.add("history-item");
+                div.innerHTML = `
+                    <a href="${item.url}" target="_blank">${item.title}</a>
+                    <button onclick="deleteHistory(${item.id})">Delete</button>
+                `;
+                document.getElementById("history-list").appendChild(div);
+            });
+        }
+
+        function deleteHistory(id) {
+            historyData = historyData.filter(item => item.id !== id);
+            loadHistory();
+        }
+
+        document.addEventListener("DOMContentLoaded", loadHistory);
+    </script>
+
+
+</body></html>
