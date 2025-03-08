@@ -1,0 +1,112 @@
+* {
+    padding: 0;
+    margin: 0;
+    user-select: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #1e2a44, #3a4f7a);
+    color: white;
+    font-family: "Orbitron", sans-serif;
+}
+
+header,
+footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+header ul,
+footer ul {
+    margin: 5px;
+}
+
+header li,
+footer li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+header a,
+footer a {
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+header a:hover,
+footer a:hover {
+    opacity: 0.5;
+}
+
+.features,
+.settings {
+    position: relative;
+}
+
+.features-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    top: 100%;
+}
+
+.settings-content {
+    display: none;
+    position: absolute;
+    min-width: 80px;
+    bottom: 100%;
+    right: 0;
+    text-align: end;
+}
+
+.features:hover .features-content,
+.settings:hover .settings-content {
+    display: block;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+main h1 {
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    width: 80%;
+}
+
+form input {
+    border: 2px solid #00ffff;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    padding: 10px;
+    background-color: transparent;
+    outline: none;
+    color: white;
+    margin-right: 5px;
+    width: 80%;
+    font-size: 16px;
+}
+
+.btn-search {
+    background-color: transparent;
+    border: none;
+    width: 30px;
+    height: 30px;
+}
