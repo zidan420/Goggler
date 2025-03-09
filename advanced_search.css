@@ -34,6 +34,31 @@ footer a:hover {
     display: block;
 }
 
+.dropdown-menu {
+    background-color: #1e2a44 !important;
+}
+
 footer .dropdown-menu {
     min-width: unset;
+}
+
+/* Changes */
+form > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+form input {
+    outline: none;
+    width: 50%;
+}
+
+form input:focus {
+    border-color: blue;
+}
+
+#submit {
+    background-color: #008cff;
 }

@@ -34,6 +34,10 @@ footer a:hover {
     display: block;
 }
 
+.dropdown-menu {
+    background-color: #1e2a44 !important;
+}
+
 footer .dropdown-menu {
     min-width: unset;
 }
