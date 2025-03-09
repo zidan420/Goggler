@@ -52,12 +52,17 @@ form input {
 }
 
 #collapse {
-    width: 85%;
-    height: 300px;
     background-color: #3498db;
     transition: none;
 }
 
 #collapse-body {
+    padding-top: 25%;
+    padding-bottom: 25%;
     background-color: #a7d6f1;
+}
+
+#collapse-body a:hover {
+    text-decoration: underline !important;
+    cursor: pointer;
 }

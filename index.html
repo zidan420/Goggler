@@ -8,7 +8,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
-    <body class="d-flex flex-column text-white min-vh-100">
+    <body class="container-fluid p-0 d-flex flex-column text-white min-vh-100">
         <header class="d-flex justify-content-end">
             <ul class="m-2">
                 <li>
@@ -26,10 +26,11 @@
         </header>
         <main class="d-flex flex-column justify-content-center align-items-center flex-grow-1">
             <h1>Goggler</h1>
-            <form class="d-flex justify-content-center align-items-center mt-2 w-100 position-relative">
+            <form
+                class="d-flex justify-content-between align-items-center mt-2 col-9 col-md-6 col-lg-5 col-xl-4 position-relative">
                 <input
                     id="img-name"
-                    class="w-75 me-2 text-white p-3 fs-4 rounded-start-5 border-info bg-transparent"
+                    class="w-100 me-2 text-white p-3 fs-4 rounded-start-5 border-info bg-transparent"
                     type="text"
                     name="img-name"
                     placeholder="Search Your Image Here ..." />
@@ -44,16 +45,16 @@
                             d="M480-320q-50 -49-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm240 160q-33 0-56.5-23.5T640-240q0-33 23.5-56.5T720-320q33 0 56.5 23.5T800-240q0 33-23.5 56.5T720-160Zm-440 40q-66 0-113-47t-47-113v-80h80v80q0 33 23.5 56.5T280-200h200v80H280Zm480-320v-160q0-33-23.5-56.5T680-680H280q-33 0-56.5 23.5T200-600v120h-80v-120q0-66 47-113t113-47h80l40-80h160l40 80h80q66 0 113 47t47 113v160h-80Z"></path>
                     </svg>
                 </button>
-                <div class="collapse rounded-2 mx-auto p-2 top-0 position-absolute" id="collapse">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h2>Search any image here</h2>
+                <div class="collapse rounded-5 w-100 p-3 top-0 position-absolute" id="collapse">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="text-dark">Search any image with Goggler</h5>
                         <button
                             data-bs-toggle="collapse"
                             data-bs-target="#collapse"
                             class="btn-close"
                             type="button"></button>
                     </div>
-                    <div id="collapse-body" class="d-flex justify-content-center align-items-center rounded-2 h-75">
+                    <div id="collapse-body" class="d-flex justify-content-center align-items-center rounded-3">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="30px"
