@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Goggler Dashboard - A personalized search experience for logged-in users."
+    />
+    <meta
+      name="keywords"
+      content="Goggler, search engine, dashboard, futuristic, varsity project"
+    />
+    <meta name="author" content="[Your Name]" />
+    <meta name="robots" content="index, follow" />
+    <!-- Title -->
+    <title>Goggler - Dashboard</title>
+    <!-- Open Graph Tags (Social Media) -->
+    <meta property="og:title" content="Goggler - Dashboard" />
+    <meta
+      property="og:description"
+      content="A personalized search experience with Goggler, built for a varsity project."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://example.com/goggler/dashboard" />
+    <meta
+      property="og:image"
+      content="https://example.com/goggler/images/goggler-logo.png"
+    />
+    <meta property="og:site_name" content="Goggler" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts (Poppins and Orbitron) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Orbitron:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Search CSS -->
+    <link rel="stylesheet" href="css/search.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header py-3">
+      <div class="container">
+        <nav
+          class="navbar navbar-expand-md d-flex justify-content-between align-items-center"
+        >
+          <!-- Left: Logo -->
+          <a class="navbar-brand logo" href="index.html">Goggler</a>
+
+          <!-- Center: Search Bar -->
+          <div
+            class="search-bar mx-auto d-flex align-items-center"
+            style="max-width: 600px; width: 100%"
+          >
+            <form class="search-form w-100 position-relative">
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search the universe with Goggler..."
+                  id="searchInput"
+                />
+                <button class="btn btn-voice" type="button">
+                  <i class="bi bi-mic-fill"></i>
+                </button>
+                <button class="btn btn-image" type="button">
+                  <i class="bi bi-image"></i>
+                </button>
+                <button class="btn btn-search" type="submit">
+                  <i class="bi bi-search"></i>
+                </button>
+                <ul class="suggestions-box" id="suggestionsBox"></ul>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right: Navigation Links & Profile -->
+          <div class="d-flex align-items-center">
+            <ul class="navbar-nav d-none d-md-flex">
+              <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+
+            <!-- User Profile Dropdown -->
+            <a
+              class="nav-link login-icon ms-3"
+              href="#"
+              id="userProfile"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="bi bi-person-circle" style="font-size: 24px"></i>
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-end user-dropdown"
+              aria-labelledby="userProfile"
+            >
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="index.html">Logout</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="container mt-5">
+        <div class="row">
+          <!-- Search Results Section -->
+          <div class="col-lg-8 search-result">
+            <div class="result-card mb-4">
+              <a href="https://playvalorant.com/en-us/" target="_blank">
+                <h3>VALORANT</h3>
+              </a>
+              <p class="description">
+                THE LATEST ... The best VALORANT players from around the globe
+                begin the road to Masters Toronto. ... Blend your style and
+                experience on a global, competitive stage ...
+              </p>
+              <a href="https://playvalorant.com/en-gb/">
+                A 5v5 character-based tactical shooter
+              </a>
+              <p class="description">
+                Riot Games presents VALORANT: a 5v5 character-based tactical FPS
+                where precise gunplay meets unique agent abilities. Learn about
+                VALORANT and its stylish ...
+              </p>
+            </div>
+            <div class="result-card mb-4">
+              <a
+                href="https://store.epicgames.com/en-US/p/valorant"
+                target="_blank"
+              >
+                <h3>VALORANT | Download and Play for Free</h3>
+              </a>
+              <p class="description">
+                VALORANT is a character-based 5v5 tactical shooter set on the
+                global stage. Outwit, outplay, and outshine your competition
+                with tactical abilities, precise ...
+              </p>
+            </div>
+            <section class="people-also-ask mt-5">
+              <h4>People also ask</h4>
+              <div class="accordion" id="peopleAlsoAskAccordion">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#question1"
+                    >
+                      Is Valorant free on mobile?
+                    </button>
+                  </h2>
+                  <div
+                    id="question1"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#peopleAlsoAskAccordion"
+                  >
+                    <div class="accordion-body">
+                      VALORANT is free to play on multiple platforms with
+                      cross-progression and cross-inventory. Download the
+                      ultimate 5v5 character-based tactical shooter below.
+                      <a
+                        href="https://playvalorant.com/en-us/platform-selection/"
+                        target="_blank"
+                        >Learn more</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#question2"
+                    >
+                      Is Valorant PC only?
+                    </button>
+                  </h2>
+                  <div
+                    id="question2"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#peopleAlsoAskAccordion"
+                  >
+                    <div class="accordion-body">
+                      Currently, VALORANT is officially available only on PC.
+                      <a href="https://playvalorant.com/en-us/" target="_blank"
+                        >Visit official site</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#question3"
+                    >
+                      Can 4 GB RAM run Valorant?
+                    </button>
+                  </h2>
+                  <div
+                    id="question3"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#peopleAlsoAskAccordion"
+                  >
+                    <div class="accordion-body">
+                      To run Valorant, your PC must meet the following minimum
+                      specs: Your PC must have a 64-bit Windows OS. Your CPU
+                      should be at least an Intel Core 2 Duo E8400. The game
+                      requires a minimum of 4GB RAM, although more is
+                      recommended.
+                      <a
+                        href="https://vibox.co.uk/shop-by-game/valorant/pc-requirements"
+                        >Valorant PC Requirements | Build your own - Vibox</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#question4"
+                    >
+                      How much GB is Valorant?
+                    </button>
+                  </h2>
+                  <div
+                    id="question4"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#peopleAlsoAskAccordion"
+                  >
+                    <div class="accordion-body">
+                      Downloading and installing Valorant will take about 28.4
+                      GB. Here are the details: First, players need to download
+                      an installer executable from the official Valorant
+                      website. The download is only 66.1MB, which won't take up
+                      much time.
+                      <a
+                        href="https://www.easeus.com/partition-manager-software/how-big-is-valorant.html#:~:text=Downloading%20and%20installing%20Valorant%20will,t%20take%20up%20much%20time."
+                        >How Big Is Valorant | Download Size & System
+                        Requirement</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#question4"
+                    >
+                      How many GB is Valorant mobile?
+                    </button>
+                  </h2>
+                  <div
+                    id="question4"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#peopleAlsoAskAccordion"
+                  >
+                    <div class="accordion-body">
+                      Part 3: How Many GB is Valorant Mobile? Valorant Mobile is
+                      designed with mobile users in mind, making efficient use
+                      of device storage. The game requires approximately 4 GB of
+                      free storage on both Android and iOS devices.
+                      <a
+                        href="https://www.lagofast.com/en/blog/valorant-mobile-release-date/"
+                        >Valorant Mobile: Release Date, Beta Test, and Download
+                        Guide - LagoFast</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#question4"
+                    >
+                      Is Valorant easy to run?
+                    </button>
+                  </h2>
+                  <div
+                    id="question4"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#peopleAlsoAskAccordion"
+                  >
+                    <div class="accordion-body">
+                      It remains an excellent choice for gamers due to its low
+                      system requirements entry point. Players only need an
+                      Intel HD Graphics 3000 in order to get above the minimum
+                      GPU requirement. Nearly 80% of the computers to test
+                      Valorant were able to pass at least the minimum system
+                      requirements which is an incredible feat!
+                      <a
+                        href="https://www.systemrequirementslab.com/cyri/requirements/valorant/19638#:~:text=It%20remains%20an%20excellent%20choice,which%20is%20an%20incredible%20feat!"
+                        >VALORANT system requirements - Can You RUN It</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Add more questions as needed -->
+              </div>
+            </section>
+
+            <div class="result-card mb-4">
+              <a href="https://en.wikipedia.org/wiki/Valorant" target="_blank">
+                <h3>Valorant</h3>
+              </a>
+              <p class="description">
+                Valorant is a 2020 first-person tactical hero shooter video game
+                developed and published by Riot Games. A free-to-play game,
+                Valorant takes inspiration from ...
+              </p>
+            </div>
+
+            <div class="result-card mb-4">
+              <a href="https://www.riotgames.com/en" target="_blank">
+                <h3>
+                  Riot Games. Developer of League of Legends, VALORANT ...
+                </h3>
+              </a>
+              <p class="description">
+                Riot Games. Developer of League of Legends, VALORANT, Teamfight
+                Tactics, Legends of Runeterra, and Wild Rift. Creators of
+                Arcane. Home of LOL and VALORANT ...
+              </p>
+            </div>
+
+            <div class="result-card mb-4">
+              <a
+                href="https://www.gamesradar.com/valorant-guide/"
+                target="_blank"
+              >
+                <h3>GamesRadar+</h3>
+              </a>
+              <a href="https://www.gamesradar.com/valorant-guide/">
+                Valorant: Everything we know about Riot Games ...
+              </a>
+              <p class="description">
+                Previously known as Project A, Valorant was recently revealed to
+                be the new shooter that League of Legends developers Riot Games
+                has been working on in secrecy. It's part of a series of new
+                projects created to develop the studio's portfolio alongside CCG
+                Legends of Runeterra, mobile ports and an unannounced ...
+              </p>
+            </div>
+
+            <section class="people-also-search mt-5">
+              <div class="container">
+                <h3 class="section-title">People also search for</h3>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <ul class="list-unstyled">
+                      <li>
+                        <a
+                          href="https://playvalorant.com/en-us/"
+                          target="_blank"
+                          >VALORANT download</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="https://playvalorant.com/en-us/"
+                          target="_blank"
+                          >Valorant Mobile</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="https://playvalorant.com/en-us/"
+                          target="_blank"
+                          >Valorant size</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <ul class="list-unstyled">
+                      <li>
+                        <a
+                          href="https://playvalorant.com/en-us/"
+                          target="_blank"
+                          >Valorant Mobile download</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="https://playvalorant.com/en-us/"
+                          target="_blank"
+                          >Valorant tracker</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="https://playvalorant.com/en-us/"
+                          target="_blank"
+                          >VALORANT login</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Image Gallery Section -->
+          <div class="col-lg-4">
+            <div class="image-gallery">
+              <div class="row g-2">
+                <div class="col-6">
+                  <div class="image-item">
+                    <img
+                      src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTzVyzwU_O73yytrt7wMM2UgnYwgmNoqc8SeJARgwAxhYkNnndB76WDH4mEiN9REpvNsmlM2Q"
+                      alt="Valorant Logo"
+                      class="img-fluid rounded shadow"
+                    />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="image-item">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Valorant_logo_-_pink_color_version.svg"
+                      alt="Valorant Gameplay"
+                      class="img-fluid rounded shadow"
+                    />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="image-item">
+                    <img
+                      src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/c6c50b680c5e1846a9c77f86d5aa357d46584ffe-1920x1080.png?auto=format&fit=fill&q=80&w=1082"
+                      alt="Valorant Competitive"
+                      class="img-fluid rounded shadow"
+                    />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="image-item">
+                    <img
+                      src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/4f99c85a041f7ce5ca5bcea74677a2787f62cf37-1920x1080.jpg?auto=format&fit=fill&q=80&w=1082"
+                      alt="Valorant Agents"
+                      class="img-fluid rounded shadow"
+                    />
+                  </div>
+                </div>
+              </div>
+              <a
+                href="#"
+                class="more-images-link d-block text-center mt-3 fw-bold"
+              >
+                More images
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer py-3">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <h1 class="footer-logo">Goggler</h1>
+          </div>
+          <div class="col-md-4 text-center">
+            <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link" id="page" href="#">1</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="page" href="#">2</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="page" href="#">3</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="page" href="#">5</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="page" href="#">6</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="page" href="#">7</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="page" href="#">8</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="page" href="#">9</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Next</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4 text-end">
+            <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="bi bi-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/main.js"></script>
+    <script>
+      const suggestionsArray = [
+        "Valorant",
+        "Google",
+        "NSU RDS",
+        "Riot Games",
+        "Adelaide time",
+        "NSU Academic Calendar",
+        "Weather in Dhaka",
+      ];
+
+      const searchInput = document.getElementById("searchInput");
+      const suggestionsBox = document.getElementById("suggestionsBox");
+
+      searchInput.addEventListener("focus", () => showSuggestions());
+      searchInput.addEventListener("input", (e) =>
+        showSuggestions(e.target.value)
+      );
+      searchInput.addEventListener("blur", () =>
+        setTimeout(() => (suggestionsBox.style.display = "none"), 200)
+      );
+
+      function showSuggestions(filter = "") {
+        suggestionsBox.innerHTML = "";
+        const filtered = suggestionsArray.filter((item) =>
+          item.toLowerCase().includes(filter.toLowerCase())
+        );
+        if (filtered.length > 0) {
+          filtered.forEach((item) => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            li.addEventListener("click", () => {
+              searchInput.value = item;
+              suggestionsBox.style.display = "none";
+            });
+            suggestionsBox.appendChild(li);
+          });
+          suggestionsBox.style.display = "block";
+        } else {
+          suggestionsBox.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
