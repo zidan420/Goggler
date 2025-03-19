@@ -84,8 +84,8 @@
                 <button class="btn btn-search" type="submit">
                   <i class="bi bi-search"></i>
                 </button>
-                <ul class="suggestions-box" id="suggestionsBox"></ul>
               </div>
+              <ul class="suggestions-box" id="suggestionsBox"></ul>
             </form>
           </div>
 
@@ -145,6 +145,7 @@
                   </button>
                 </div>
               </form>
+              <ul class="suggestions-box" id="suggestionsBoxMobile"></ul>
             </div>
 
             <!-- Three Dots Menu for Tablet/Mobile -->
@@ -635,6 +636,11 @@
       const searchInput = document.getElementById("searchInput");
       const suggestionsBox = document.getElementById("suggestionsBox");
 
+      const searchInputMobile = document.getElementById("searchInputMobile");
+      const suggestionsBoxMobile = document.getElementById(
+        "suggestionsBoxMobile"
+      );
+
       searchInput.addEventListener("focus", () => showSuggestions());
       searchInput.addEventListener("input", (e) =>
         showSuggestions(e.target.value)
@@ -643,8 +649,25 @@
         setTimeout(() => (suggestionsBox.style.display = "none"), 200)
       );
 
+      searchInputMobile.addEventListener("focus", () => showSuggestions());
+      searchInputMobile.addEventListener("input", (e) =>
+        showSuggestions(e.target.value)
+      );
+      searchInputMobile.addEventListener("blur", () =>
+        setTimeout(() => (suggestionsBoxMobile.style.display = "none"), 200)
+      );
+
       function showSuggestions(filter = "") {
-        suggestionsBox.innerHTML = "";
+        let box = suggestionsBox;
+        let searchInputLocal = searchInput;
+
+        // If on mobile or tablet, use mobile boxes
+        if (window.innerWidth <= 991) {
+          box = suggestionsBoxMobile;
+          searchInputLocal = searchInputMobile;
+        }
+
+        box.innerHTML = "";
         const filtered = suggestionsArray.filter((item) =>
           item.toLowerCase().includes(filter.toLowerCase())
         );
@@ -652,15 +675,34 @@
           filtered.forEach((item) => {
             const li = document.createElement("li");
             li.textContent = item;
-            li.addEventListener("click", () => {
-              searchInput.value = item;
-              suggestionsBox.style.display = "none";
+
+            // Create delete button
+            const deleteBtn = document.createElement("span");
+            deleteBtn.textContent = "X";
+            deleteBtn.classList.add("delete-btn");
+            deleteBtn.addEventListener("click", (e) => {
+              e.stopPropagation(); // Prevent the click from also triggering the input
+              deleteSuggestion(item); // Call function to delete suggestion
             });
-            suggestionsBox.appendChild(li);
+
+            li.appendChild(deleteBtn);
+            li.addEventListener("click", () => {
+              searchInputLocal.value = item;
+              box.style.display = "none";
+            });
+            box.appendChild(li);
           });
-          suggestionsBox.style.display = "block";
+          box.style.display = "block";
         } else {
-          suggestionsBox.style.display = "none";
+          box.style.display = "none";
+        }
+      }
+
+      function deleteSuggestion(suggestion) {
+        const index = suggestionsArray.indexOf(suggestion);
+        if (index !== -1) {
+          suggestionsArray.splice(index, 1); // Remove the suggestion from the array
+          showSuggestions(); // Refresh suggestions list
         }
       }
     </script>

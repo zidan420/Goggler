@@ -93,6 +93,7 @@ body {
   overflow-y: auto;
   animation: fadeIn 0.3s ease-in-out;
   padding: 5px 0;
+  text-align: left;
 }
 
 .suggestions-box li {
@@ -102,12 +103,20 @@ body {
   color: #00bcd4;
   font-size: 14px;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  text-align: left;
 }
 
 .suggestions-box li:hover {
   background-color: #00bcd4;
   color: #fff;
   transform: translateX(5px);
+}
+.delete-btn {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: grey;
+  font-size: 16px;
 }
 
 .search-form {
@@ -204,11 +213,16 @@ body {
     width: 100%;
     text-align: center;
   }
-
+  .suggestions-box {
+    width: 100%;
+    max-height: 180px; /* Adjust height further for smaller mobile screens */
+    overflow-y: auto;
+    display: block; /* Ensure it's visible */
+  }
   .search-bar {
     max-width: 100% !important;
+    margin-bottom: 10px;
   }
-
   .navbar-nav {
     margin-top: 10px;
   }
