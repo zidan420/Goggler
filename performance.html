@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goggler - Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a0f1c;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid cyan;
+            padding-bottom: 10px;
+        }
+        .tab {
+            cursor: pointer;
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid cyan;
+            color: cyan;
+            border-radius: 5px;
+        }
+        .tab:hover, .tab.active {
+            background: cyan;
+            color: #0a0f1c;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid cyan;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        /* New styles for URL Inspection */
+        .url-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .url-form input[type="text"] {
+            padding: 8px;
+            border: 1px solid cyan;
+            border-radius: 5px;
+            background: #1a2333;
+            color: #fff;
+            flex-grow: 1;
+        }
+        .url-form button {
+            padding: 8px 16px;
+            background: cyan;
+            border: none;
+            border-radius: 5px;
+            color: #0a0f1c;
+            cursor: pointer;
+        }
+        .url-form button:hover {
+            background: #00b3b3;
+        }
+        .result {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Goggler Dashboard</h1>
+        <div class="tabs">
+            <button class="tab active" onclick="openTab(event, 'overview')">Overview</button>
+            <button class="tab" onclick="openTab(event, 'performance')">Performance</button>
+            <button class="tab" onclick="openTab(event, 'url')">URL Inspection</button>
+            <button class="tab" onclick="openTab(event, 'indexing')">Indexing</button>
+            <button class="tab" onclick="openTab(event, 'experience')">Experience</button>
+            <button class="tab" onclick="openTab(event, 'security')">Security & Manual Actions</button>
+        </div>
+        <div id="overview" class="tab-content active">
+            <h2>Overview</h2>
+            <p>Summary of website status...</p>
+        </div>
+        <div id="performance" class="tab-content">
+            <h2>Performance</h2>
+            <p>Page performance analytics...</p>
+        </div>
+        <div id="url" class="tab-content">
+            <h2>URL Inspection</h2>
+            <form id="urlForm" class="url-form">
+                <input type="text" id="urlInput" placeholder="Enter URL (e.g., https://example.com)" required>
+                <button type="submit">Inspect</button>
+            </form>
+            <div id="urlResult" class="result"></div>
+        </div>
+        <div id="indexing" class="tab-content">
+            <h2>Indexing</h2>
+            <ul>
+                <li>Pages</li>
+                <li>Sitemaps</li>
+                <li>Removals</li>
+            </ul>
+        </div>
+        <div id="experience" class="tab-content">
+            <h2>Experience</h2>
+            <ul>
+                <li>Core Web Vitals</li>
+                <li>HTTPS</li>
+            </ul>
+        </div>
+        <div id="security" class="tab-content">
+            <h2>Security & Manual Actions</h2>
+            <ul>
+                <li>Security Issues</li>
+                <li>Manual Actions</li>
+                <li>Settings</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function openTab(evt, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Handle URL form submission
+        document.getElementById("urlForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const urlInput = document.getElementById("urlInput").value;
+    const resultDiv = document.getElementById("urlResult");
+    resultDiv.innerHTML = "Checking...";
+
+    try {
+        const response = await fetch("api/check-url.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ url: urlInput }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            resultDiv.innerHTML = data.inDatabase
+                ? `<p>URL <strong>${urlInput}</strong> is in the database.</p>`
+                : `<p>URL <strong>${urlInput}</strong> is not in the database.</p>`;
+        } else {
+            resultDiv.innerHTML = `<p>Error: ${data.error || "Something went wrong"}</p>`;
+        }
+    } catch (error) {
+        resultDiv.innerHTML = `<p>Failed to connect to the server: ${error.message}</p>`;
+    }
+});
+
+    </script>
+</body>
+</html>
