@@ -1,78 +1,81 @@
 /* Global Styles */
 body {
-    background: linear-gradient(to bottom, #1E2A44, #3A4F7A); /* Deep blue gradient */
-    color: #FFFFFF; /* White text */
-    font-family: 'Poppins', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  background: linear-gradient(
+    to bottom,
+    #1e2a44,
+    #3a4f7a
+  ); /* Deep blue gradient */
+  color: #ffffff; /* White text */
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Header */
 .header {
-    background: transparent;
+  background: transparent;
 }
 
 .logo {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 32px;
-    font-weight: bold;
-    color: #FFFFFF;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Cyan glow */
+  font-family: "Orbitron", sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Cyan glow */
 }
 
 .nav-link {
-    color: #FFFFFF;
-    transition: color 0.3s;
+  color: #ffffff;
+  transition: color 0.3s;
 }
 
 .nav-link:hover {
-    color: #00FFFF; /* Neon cyan */
+  color: #00ffff; /* Neon cyan */
 }
 
 /* Footer */
 .footer {
-    background: #1E2A44; /* Darker blue */
-    margin-top: auto; /* Pushes footer to bottom if content is short */
+  background: #1e2a44; /* Darker blue */
+  margin-top: auto; /* Pushes footer to bottom if content is short */
 }
 
 .footer-logo {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 20px;
-    color: #FFFFFF;
+  font-family: "Orbitron", sans-serif;
+  font-size: 20px;
+  color: #ffffff;
 }
 
 .footer .nav-link {
-    color: #D3D3D3; /* Silver */
+  color: #d3d3d3; /* Silver */
 }
 
 .footer .nav-link:hover {
-    color: #00FFFF; /* Neon cyan */
+  color: #00ffff; /* Neon cyan */
 }
 
 .social-icon {
-    color: #00FFFF; /* Neon cyan */
-    font-size: 20px;
-    margin-left: 10px;
-    transition: color 0.3s;
+  color: #00ffff; /* Neon cyan */
+  font-size: 20px;
+  margin-left: 10px;
+  transition: color 0.3s;
 }
 
 .social-icon:hover {
-    color: #8A2BE2; /* Purple */
+  color: #8a2be2; /* Purple */
 }
 
 /* Responsive Adjustments for Global Elements */
 @media (max-width: 768px) {
-    .logo {
-        font-size: 24px;
-    }
+  .logo {
+    font-size: 24px;
+  }
 
-    .footer .row {
-        text-align: center;
-    }
+  .footer .row {
+    text-align: center;
+  }
 
-    .footer .col-md-4 {
-        margin-bottom: 10px;
-    }
+  .footer .col-md-4 {
+    margin-bottom: 10px;
+  }
 }
-

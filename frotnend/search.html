@@ -62,9 +62,9 @@
           <!-- Left: Logo -->
           <a class="navbar-brand logo" href="index.html">Goggler</a>
 
-          <!-- Center: Search Bar -->
+          <!-- Center: Search Bar  -->
           <div
-            class="search-bar mx-auto d-flex align-items-center"
+            class="search-bar d-none d-lg-flex align-items-center mx-auto"
             style="max-width: 600px; width: 100%"
           >
             <form class="search-form w-100 position-relative">
@@ -89,9 +89,9 @@
             </form>
           </div>
 
-          <!-- Right: Navigation Links & Profile -->
-          <div class="d-flex align-items-center">
-            <ul class="navbar-nav d-none d-md-flex">
+          <!-- Right Side Large Screens: Navigation Links -->
+          <div class="d-none d-lg-flex align-items-center">
+            <ul class="navbar-nav me-3">
               <li class="nav-item"><a class="nav-link" href="#">About</a></li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Features</a>
@@ -99,9 +99,9 @@
               <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
             </ul>
 
-            <!-- User Profile Dropdown -->
+            <!-- User Profile -->
             <a
-              class="nav-link login-icon ms-3"
+              class="nav-link login-icon"
               href="#"
               id="userProfile"
               data-bs-toggle="dropdown"
@@ -118,9 +118,82 @@
               <li><a class="dropdown-item" href="index.html">Logout</a></li>
             </ul>
           </div>
+
+          <!-- Tablet & Mobile View -->
+          <div class="d-flex d-lg-none align-items-center ms-auto">
+            <!-- Search bar appears right in smaller screens -->
+            <div
+              class="search-bar d-flex align-items-center me-2"
+              style="max-width: 400px; width: 100%"
+            >
+              <form class="search-form w-100 position-relative">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Valorant"
+                    id="searchInputMobile"
+                  />
+                  <button class="btn btn-voice" type="button">
+                    <i class="bi bi-mic-fill"></i>
+                  </button>
+                  <button class="btn btn-image" type="button">
+                    <i class="bi bi-image"></i>
+                  </button>
+                  <button class="btn btn-search" type="submit">
+                    <i class="bi bi-search"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Three Dots Menu for Tablet/Mobile -->
+            <div class="dropdown me-2">
+              <button
+                class="btn"
+                type="button"
+                id="smallScreenMenu"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i
+                  class="bi bi-three-dots-vertical text-white"
+                  style="font-size: 24px"
+                ></i>
+              </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end menu-dropdown"
+                aria-labelledby="smallScreenMenu"
+              >
+                <li><a class="dropdown-item" href="#">About</a></li>
+                <li><a class="dropdown-item" href="#">Features</a></li>
+                <li><a class="dropdown-item" href="#">Contact</a></li>
+              </ul>
+            </div>
+
+            <!-- User Profile -->
+            <a
+              class="nav-link login-icon ms-2"
+              href="#"
+              id="userProfileMobile"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="bi bi-person-circle" style="font-size: 24px"></i>
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-end user-dropdown"
+              aria-labelledby="userProfileMobile"
+            >
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="index.html">Logout</a></li>
+            </ul>
+          </div>
         </nav>
       </div>
     </header>
+
     <main>
       <div class="container mt-5">
         <div class="row">
