@@ -56,7 +56,6 @@ echo "\e[34mThis is blue text\e[0m\n"; // Blue text
 	/* Follow all redirects to get the final URL */
 	function get_final_url($url){
 	    $ch = curl_init($url);
-	    curl_setopt($ch, CURLOPT_NOBODY, true); /* HEAD request */
 	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 	    curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
@@ -107,8 +106,8 @@ echo "\e[34mThis is blue text\e[0m\n"; // Blue text
 
 	/* Base URL */
 	$base_url = "https://suninme.org/best-websites";
-	$max_pages = 2;
-	$max_url = 2;
+	$max_pages = 5;
+	$max_url = 100;
 	$url_crawled = 1; /* up to max_url */
 	$max_url_reached = false;
 	$offset = 0;
@@ -118,6 +117,7 @@ echo "\e[34mThis is blue text\e[0m\n"; // Blue text
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_HEADER, true);
 	curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
+	curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 
 	$db->insert_data(['url'=>$base_url], "urlInfo");
 	while ($base_url){
@@ -152,7 +152,7 @@ echo "\e[34mThis is blue text\e[0m\n"; // Blue text
 		$process_dom = new ProcessDom($body);
 
 		/* Store the title to database */
-		$db->update_data(["title" => $process_dom->extractTitle(), "description" => $process_dom->extractDescription()], ["id" => $url_id], "urlInfo");
+		$db->update_data(["title" => $process_dom->extractTitle(), "description" => $process_dom->extractDescription(), "doc_length" => $process_dom->getDocumentLength()], ["id" => $url_id], "urlInfo");
 
 		/* Map all relevant words to this (base) URL */
 		$keywords = $process_dom->extractKeywords();
@@ -165,7 +165,7 @@ echo "\e[34mThis is blue text\e[0m\n"; // Blue text
 				$keyword_id = $db->get_keyword_id($keyword, "keywordTable");
 
 				/* Insert keyword ID and url ID to keyToUrl Table */
-				$db->insert_data(["keywordId" => "$keyword_id", "urlId" => "$url_id"], "keyToUrl");
+				$db->insert_data(["keywordId" => "$keyword_id", "urlId" => "$url_id", "frequency" => $process_dom->getKeywordFrequency($keyword)], "keyToUrl");
 			}
 		}
 
