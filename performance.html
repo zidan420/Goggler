@@ -106,9 +106,14 @@
             <h2>Indexing</h2>
             <ul>
                 <li>Pages</li>
-                <li>Sitemaps</li>
                 <li>Removals</li>
             </ul>
+            <h2>Fetch Sitemap from URL</h2>
+            <form id="sitemapFetchForm">
+                <input type="text" id="sitemapUrl" placeholder="Enter sitemap URL (e.g., https://example.com/sitemap.xml)" required>
+                <button type="submit">Fetch Sitemap</button>
+            </form>
+            <div id="sitemapFetchResult" class="result"></div>
         </div>
         <div id="experience" class="tab-content">
             <h2>Experience</h2>
@@ -169,6 +174,39 @@
         resultDiv.innerHTML = `<p>Failed to connect to the server: ${error.message}</p>`;
     }
 });
+
+    </script>
+    <script type="text/javascript">
+document.getElementById("sitemapFetchForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    
+    const urlInput = document.getElementById("sitemapUrl").value;
+    const resultDiv = document.getElementById("sitemapFetchResult");
+
+    resultDiv.innerHTML = "Fetching sitemap...";
+
+    try {
+        const response = await fetch("api/fetch_sitemap.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ url: urlInput }),
+        });
+
+        const text = await response.text(); // Get raw response text
+        console.log("Raw Response:", text); // Debug the response
+
+        const data = JSON.parse(text); // Now parse JSON
+
+        if (response.ok) {
+            resultDiv.innerHTML = `<p>${data.message}</p>`;
+        } else {
+            resultDiv.innerHTML = `<p>Error: ${data.error || "Something went wrong"}</p>`;
+        }
+    } catch (error) {
+        resultDiv.innerHTML = `<p>Failed to fetch sitemap: ${error.message}</p>`;
+    }
+});
+
 
     </script>
 </body>
