@@ -39,6 +39,7 @@ footer .dropdown-menu {
 }
 
 main h1 {
+    margin-top: 50px;
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
@@ -49,20 +50,4 @@ form input {
 .btn-search {
     width: 30px;
     height: 30px;
-}
-
-#collapse {
-    background-color: #3498db;
-    transition: none;
-}
-
-#collapse-body {
-    padding-top: 25%;
-    padding-bottom: 25%;
-    background-color: #a7d6f1;
-}
-
-#collapse-body a:hover {
-    text-decoration: underline !important;
-    cursor: pointer;
 }

@@ -1,0 +1,56 @@
+* {
+    padding: 0;
+    margin: 0;
+    user-select: none;
+}
+
+body {
+    background: linear-gradient(to bottom, #1e2a44, #3a4f7a);
+    font-family: "Orbitron", sans-serif;
+}
+
+header li,
+footer li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+header a,
+footer a {
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+header a:hover,
+footer a:hover {
+    opacity: 0.5;
+}
+
+.dropdown a {
+    display: block;
+}
+
+.dropdown-menu {
+    background-color: #1e2a44 !important;
+}
+
+footer .dropdown-menu {
+    min-width: unset;
+}
+
+.search-result a {
+    text-decoration: none;
+}
+
+.btn-search {
+    width: 30px;
+    height: 30px;
+}
+
+form input {
+    outline: none;
+}
