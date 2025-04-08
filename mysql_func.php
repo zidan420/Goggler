@@ -31,6 +31,28 @@ class MySql
         if ($result) {
             return true;
         }
+        return false;
+    }
+
+    function delete_data($where, $table = "")
+    {
+        if ($table != "") {
+            $this->table = $table;
+        }
+
+        $where_clause = [];
+        foreach ($where as $col => $val) {
+            $where_clause[] = "$col = '" . $this->conn->real_escape_string($val) . "'";
+        }
+        $where_string = implode(" AND ", $where_clause);
+
+        $query = "DELETE FROM $this->table WHERE $where_string";
+        $result = $this->conn->query($query);
+
+        if ($result) {
+            return true;
+        }
+        return false;
     }
 
     function update_data($data, $where, $table = "")
@@ -53,6 +75,11 @@ class MySql
 
         $query = "UPDATE $this->table SET $set_string WHERE $where_string";
         $this->conn->query($query);
+
+        if ($result) {
+            return true;
+        }
+        return false;
     }
 
     function delete_all()
@@ -246,6 +273,104 @@ class MySql
         }
         $query = "SELECT * FROM $this->table WHERE URL LIKE '$link'";
         return $this->conn->query($query)->num_rows;
+    }
+
+    function calculate_idf()
+    {
+        // Total number of documents
+        $total_docs = $this->conn->query("SELECT COUNT(*) FROM urlInfo")->fetch_row()[0];
+
+        // Update IDF for each keyword
+        $result = $this->conn->query("SELECT id, keyword FROM keywordTable");
+        while ($row = $result->fetch_assoc()) {
+            $keyword_id = $row["id"];
+            // Number of documents containing this keyword
+            $doc_count = $this->conn
+                ->query("SELECT COUNT(*) FROM keyToUrl WHERE keywordId = $keyword_id")
+                ->fetch_row()[0];
+            // IDF calculation
+            $idf = log(($total_docs - $doc_count + 0.5) / ($doc_count + 0.5) + 1);
+            $this->conn->query("UPDATE keywordTable SET idf = $idf WHERE id = $keyword_id");
+        }
+    }
+
+    function calculate_bm25($query_terms, $k1 = 1.5, $b = 0.75)
+    {
+        // Get average document length
+        $avgdl_result = $this->conn->query("SELECT AVG(doc_length) FROM urlInfo")->fetch_row();
+        $avgdl = $avgdl_result[0] ?? 1; // Avoid division by zero
+
+        // Escape query terms
+        $terms = array_map([$this->conn, "real_escape_string"], $query_terms);
+
+        // Build query to get relevant documents
+        $term_ids = [];
+        foreach ($terms as $term) {
+            $result = $this->conn->query("SELECT id, idf FROM keywordTable WHERE keyword = '$term'");
+            if ($row = $result->fetch_assoc()) {
+                $term_ids[$term] = ["id" => $row["id"], "idf" => $row["idf"]];
+            }
+        }
+
+        // Calculate BM25 for each document
+        $scores = [];
+        $doc_result = $this->conn->query("SELECT id, doc_length FROM urlInfo");
+        while ($doc = $doc_result->fetch_assoc()) {
+            $doc_id = $doc["id"];
+            $doc_length = $doc["doc_length"] ?? 1;
+            $score = 0;
+
+            foreach ($terms as $term) {
+                if (!isset($term_ids[$term])) {
+                    continue;
+                } // Term not in index
+                $keyword_id = $term_ids[$term]["id"];
+                $idf = $term_ids[$term]["idf"];
+
+                $freq_result = $this->conn->query(
+                    "SELECT frequency FROM keyToUrl WHERE keywordId = $keyword_id AND urlId = $doc_id"
+                );
+                $tf = $freq_result->num_rows ? $freq_result->fetch_assoc()["frequency"] : 0;
+
+                $numerator = $tf * ($k1 + 1);
+                $denominator = $tf + $k1 * (1 - $b + $b * ($doc_length / $avgdl));
+                $score += $idf * ($numerator / $denominator);
+            }
+            if ($score > 0) {
+                $scores[$doc_id] = $score;
+            }
+        }
+        return $scores;
+    }
+
+    function search($text, $offset, $results_per_page)
+    {
+        $terms = preg_split("/\s+/", trim($text));
+        $scores = $this->calculate_bm25($terms);
+
+        // Sort by score descending
+        arsort($scores);
+
+        // Total count of results (before pagination)
+        $total_count = count($scores);
+
+        $results = [];
+        $doc_ids = array_keys($scores);
+
+        // Apply pagination
+        $paginated_ids = array_slice($doc_ids, $offset, $results_per_page);
+
+        // Fetch details for paginated document IDs
+        foreach ($paginated_ids as $doc_id) {
+            $doc_id = $this->conn->real_escape_string($doc_id);
+            $result = $this->conn->query("SELECT url, title, description FROM urlInfo WHERE id = '$doc_id'");
+            /* if the result is not empty, insert result */
+            if ($row = $result->fetch_assoc()) {
+                $results[] = $row;
+            }
+        }
+
+        return [$results, $total_count];
     }
 }
 ?>

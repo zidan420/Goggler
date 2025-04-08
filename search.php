@@ -30,15 +30,15 @@ $results_per_page = 10;
 $page = isset($_GET["page"]) ? max(1, intval($_GET["page"])) : 1;
 $offset = ($page - 1) * $results_per_page; /* 0, $results_per_page, $results_per_page*2 ... */
 
-$results = $conn->query($query, $offset, $results_per_page);
+[$results, $total_results] = $conn->search($query, $offset, $results_per_page);
 
 // Get total results count for pagination
-$total_results = $conn->query_count($query);
-if ($total_results->num_rows == 0) {
-    $total_results = 0;
-} else {
-    $total_results = $total_results->fetch_assoc()["count(*)"];
-}
+//$total_results = $conn->query_count($query);
+//if ($total_results->num_rows == 0) {
+//    $total_results = 0;
+//} else {
+//    $total_results = $total_results->fetch_assoc()["count(*)"];
+//}
 $total_pages = ceil($total_results / $results_per_page);
 ?>
 <html lang="en">
@@ -111,9 +111,9 @@ $total_pages = ceil($total_results / $results_per_page);
         <p><?= $total_results ?> results found</p>
 
         <!-- Search Results -->
-        <?php if (!empty($results) && $results->num_rows > 0): ?>
+        <?php if (!empty($results)): ?>
             <ul class="list-group">
-                <?php while ($row = $results->fetch_assoc()): ?>
+                <?php foreach ($results as $row): ?>
                     <li class="list-group-item search-result">
                         <h3>
                             <a href='<?= htmlspecialchars($row["url"]) ?>'>
@@ -122,7 +122,7 @@ $total_pages = ceil($total_results / $results_per_page);
                         </h3>
                         <p><?= htmlspecialchars($row["description"] ?? "No Description") ?></p>
                     </li>
-                <?php endwhile; ?>
+                <?php endforeach; ?>
             </ul>
         <?php else: ?>
             <p>No results found.</p>
