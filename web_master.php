@@ -16,6 +16,7 @@ if ($user_logged_in) {
 
     // If the user is a web master of any site
     if ($result->num_rows > 0) {
+        $_SESSION["is_web_master"] = true;
         header("Location: webmaster/dashboard.php");
         exit();
     } else {
@@ -45,6 +46,7 @@ if ($user_logged_in) {
                     unset($_SESSION["verification_code"]);
                     unset($_SESSION["verification_url"]);
                     unset($_SESSION["verification_start"]);
+                    $_SESSION["is_web_master"] = true;
                     header("Location: webmaster/dashboard.php");
                     exit();
                 } else {

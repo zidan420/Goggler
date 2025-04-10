@@ -87,3 +87,11 @@ form input {
 .search-result a {
     text-decoration: none;
 }
+
+.search-result img {
+    width: 150px;
+    height: 150px;
+    margin-right: 15px;
+    vertical-align: middle;
+}
+

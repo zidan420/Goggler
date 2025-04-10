@@ -239,28 +239,76 @@ while ($base_url) {
 
             /* Count No. of times a URL (Domain) occurs in database */
             $count_url = $conn->check_url_count(url2host($full_url) . "%", "urlInfo");
-            if ($count_url != $max_pages && !$max_url_reached) {
-                /* Skip any URLs that are not whitelisted */
-                $full_url = isWhitelisted($full_url); /* gets the final url after redirect */
-                if (!$full_url) {
-                    continue;
+            /* Max Page limit reached, skip */
+            if ($count_url == $max_pages) {
+                continue;
+            }
+            /* Max URL limit reached and it is a new host, skip */
+            if ($max_url_reached && $count_url == 0) {
+                continue;
+            }
+
+            /* Skip any URLs that are not whitelisted */
+            $full_url = isWhitelisted($full_url); /* gets the final url after redirect */
+            if (!$full_url) {
+                continue;
+            }
+
+            /* Store URL in database for crawling later */
+            if ($conn->insert_data(["URL" => $full_url], "urlInfo")) {
+                echo "\e[34mInserting $full_url\e[0m\n";
+            }
+
+            /* Store Source & destination URL */
+            $to_url_id = $conn->get_url_id($full_url, "urlInfo");
+            $conn->insert_data(["sourceUrl" => $url_id, "destinationUrl" => $to_url_id], "outgoingUrl");
+
+            /* Increase the count for new host only */
+            if ($count_url == 0) {
+                $url_crawled += 1;
+                if ($url_crawled == $max_url) {
+                    $max_url_reached = true;
                 }
+            }
+        }
+    }
 
-                /* Store URL in database for crawling later */
-                if ($conn->insert_data(["URL" => $full_url], "urlInfo")) {
-                    echo "\e[34mInserting $full_url\e[0m\n";
-                }
+    /* Search for src and alt attributes in <img> tags */
+    $img_pattern = "/<img[^>]+src=\"(.+?)\"[^>]*alt=\"(.+?)\"/i";
+    if (preg_match_all($img_pattern, $body, $img_matches, PREG_SET_ORDER)) {
+        foreach ($img_matches as $match) {
+            $src = $match[1];
+            $alt = $match[2];
+            $full_img_url = rel2abs($base_url, $src);
+            echo $src . " (alt: $alt) --> " . $full_img_url . "\n";
 
-                /* Store Source & destination URL */
-                $to_url_id = $conn->get_url_id($full_url, "urlInfo");
-                $conn->insert_data(["sourceUrl" => $url_id, "destinationUrl" => $to_url_id], "outgoingUrl");
+            $count_url = $conn->check_url_count(url2host($full_img_url) . "%", "urlInfo");
+            /* Max Page limit reached, skip */
+            if ($count_url == $max_pages) {
+                continue;
+            }
+            /* Max URL limit reached and it is a new host, skip */
+            if ($max_url_reached && $count_url == 0) {
+                continue;
+            }
 
-                /* Increase the count for new host only */
-                if ($count_url == 0) {
-                    $url_crawled += 1;
-                    if ($url_crawled == $max_url) {
-                        $max_url_reached = true;
-                    }
+            $full_img_url = isWhitelisted($full_img_url);
+            if (!$full_img_url) {
+                continue;
+            }
+
+            if ($conn->insert_data(["URL" => $full_img_url, "description" => $alt], "urlInfo")) {
+                echo "\e[34mInserting image $full_img_url with alt '$alt'\e[0m\n";
+            }
+
+            $to_url_id = $conn->get_url_id($full_img_url, "urlInfo");
+            $conn->insert_data(["sourceUrl" => $url_id, "destinationUrl" => $to_url_id], "outgoingUrl");
+            $conn->update_data(["title" => basename($full_img_url)], ["id" => $to_url_id], "urlInfo");
+
+            if ($count_url == 0) {
+                $url_crawled += 1;
+                if ($url_crawled == $max_url) {
+                    $max_url_reached = true;
                 }
             }
         }

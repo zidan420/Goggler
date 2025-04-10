@@ -19,6 +19,29 @@ if ($user_logged_in) {
     header("Location: login.php");
     exit();
 }
+date_default_timezone_set("Asia/Dhaka");
+$now = new DateTime();
+$yesterday = (clone $now)->modify("-1 day");
+$month_ago = (clone $now)->modify("-1 month");
+$year_ago = (clone $now)->modify("-1 year");
+/* To-do: Limit no. of histories that can be added to the $history_groups array */
+$history_groups = ["Today" => [], "Yesterday" => [], "A Month Ago" => [], "A Year Ago" => [], "Older" => []];
+while ($row = $result->fetch_assoc()) {
+    $search_time = new DateTime($row["search_time"]);
+    $diff = $now->diff($search_time);
+
+    if ($search_time->format("Y-m-d") === $now->format("Y-m-d")) {
+        $history_groups["Today"][] = $row;
+    } elseif ($search_time->format("Y-m-d") === $yesterday->format("Y-m-d")) {
+        $history_groups["Yesterday"][] = $row;
+    } elseif ($diff->m >= 1 && $diff->y < 1) {
+        $history_groups["A Month Ago"][] = $row;
+    } elseif ($diff->y >= 1 && $diff->y < 2) {
+        $history_groups["A Year Ago"][] = $row;
+    } else {
+        $history_groups["Older"][] = $row;
+    }
+}
 ?>
 <html lang="en">
     <head>
@@ -70,26 +93,32 @@ if ($user_logged_in) {
         <main class="d-flex flex-column justify-content-center align-items-center flex-grow-1">
     <h2 class="text-center">Your Search History</h2>
     <div class="table-responsive mt-4">
-        <?php if ($result->num_rows > 0): ?>
-            <table class="table table-dark table-bordered">
-                <thead>
-                    <tr>
-                        <th>Search Query</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($row = $result->fetch_assoc()): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($row["query"]) ?></td>
-                            <td><?= $row["search_time"] ?></td>
-                        </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-        <?php else: ?>
-            <p class="text-center fs-4 mt-3">No search history available.</p>
-        <?php endif; ?>
+        <?php foreach ($history_groups as $period => $entries): ?>
+                    <?php if (!empty($entries)): ?>
+                        <h3><?= $period ?></h3>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-dark table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Search Query</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($entries as $row): ?>
+                                        <tr>
+                                            <td><?= htmlspecialchars($row["query"]) ?></td>
+                                            <td><?= $row["search_time"] ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                <?php if (empty(array_filter($history_groups))): ?>
+                    <p class="text-center fs-4 mt-3">No search history available.</p>
+                <?php endif; ?>
     </div>
     <a href="index.php" class="btn btn-info mt-3">Back to Search</a>
 </main>

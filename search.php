@@ -7,6 +7,10 @@ session_start();
 require_once "config.php";
 require_once "mysql_func.php";
 
+// Initialize Memcached
+$memcached = new Memcached();
+$memcached->addServer("127.0.0.1", 11211);
+
 $query = trim($_GET["query"] ?? "");
 if (!$query) {
     header("Location: index.php");
@@ -32,13 +36,23 @@ $offset = ($page - 1) * $results_per_page; /* 0, $results_per_page, $results_per
 
 [$results, $total_results] = $conn->search($query, $offset, $results_per_page);
 
-// Get total results count for pagination
-//$total_results = $conn->query_count($query);
-//if ($total_results->num_rows == 0) {
-//    $total_results = 0;
-//} else {
-//    $total_results = $total_results->fetch_assoc()["count(*)"];
-//}
+// Create a unique cache key based on query and page
+$cache_key = "search:" . md5(strtolower($query)) . ":page" . $page;
+
+// Check Memcached for cached results
+$cached_data = $memcached->get($cache_key);
+if ($cached_data !== false) {
+    // Cache hit: Decode cached results
+    [$results, $total_results] = json_decode($cached_data, true);
+    $source = "Cached";
+} else {
+    // Cache miss: Query the database
+    [$results, $total_results] = $conn->search($query, $offset, $results_per_page);
+
+    // Store results in Memcached for 60 seconds
+    $memcached->set($cache_key, json_encode([$results, $total_results]), 60);
+    $source = "Fresh";
+}
 $total_pages = ceil($total_results / $results_per_page);
 ?>
 <html lang="en">
@@ -107,7 +121,7 @@ $total_pages = ceil($total_results / $results_per_page);
             </button>
         </form>
         <hr>
-        <h2>Search Results for "<?= htmlspecialchars($query) ?>"</h2>
+        <h2>Search Results for "<?= htmlspecialchars($query) ?>"(<?= $source ?>)</h2>
         <p><?= $total_results ?> results found</p>
 
         <!-- Search Results -->

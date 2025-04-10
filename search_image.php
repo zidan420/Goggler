@@ -140,12 +140,20 @@ $total_pages = ceil($total_results / $results_per_page);
         <?php if (!empty($results) && $results->num_rows > 0): ?>
             <ul class="list-group">
                 <?php while ($row = $results->fetch_assoc()): ?>
-                    <li class="list-group-item search-result">
-                        <h3>
-                            <a href='<?= htmlspecialchars($row["url"]) ?>' target="_blank">
-                                <?= htmlspecialchars($row["title"] ?? "No Title") ?>
-                            </a>
-                        </h3>
+                    <li class="list-group-item search-result d-flex align-items-center p-3">
+                        <img src='<?= htmlspecialchars($row["url"]) ?>' alt='<?= htmlspecialchars(
+    $row["title"] ?? "Image"
+) ?>' class="img-thumbnail" loading="lazy" decoding="async">
+                        <div class="search-result-content flex-grow-1">
+                            <h3>
+                                <a href='<?= htmlspecialchars($row["url"]) ?>' target="_blank">
+                                    <?= htmlspecialchars($row["title"] ?? "No Title") ?>
+                                </a>
+                            </h3>
+                            <p><a href='<?= htmlspecialchars($row["url"]) ?>' target="_blank"><?= htmlspecialchars(
+    $row["url"]
+) ?></a></p>
+                        </div>
                     </li>
                 <?php endwhile; ?>
             </ul>

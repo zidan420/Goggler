@@ -8,12 +8,13 @@ $root = "../";
 require_once $root . "config.php";
 
 $user_logged_in = isset($_SESSION["user_id"]);
-if ($user_logged_in) {
+if ($user_logged_in && $_SESSION["is_web_master"]) {
     $user_id = $_SESSION["user_id"];
     $profile_icon =
         $conn->get_profile_icon($user_id)->fetch_assoc()["profile_icon"] ?? $root . "images/default-user.svg";
 } else {
-    $profile_icon = $root . "images/default-user.svg";
+    header("Location: ../index.php");
+    exit();
 }
 ?>
 <html lang="en">
