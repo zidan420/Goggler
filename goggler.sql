@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 09, 2025 at 07:19 AM
+-- Generation Time: Apr 11, 2025 at 01:36 PM
 -- Server version: 11.4.3-MariaDB-1
 -- PHP Version: 8.4.4
 
@@ -31,7 +31,7 @@ CREATE TABLE `keyToUrl` (
   `keywordId` int(11) NOT NULL,
   `urlId` int(11) NOT NULL,
   `frequency` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `keyToUrl`
@@ -127,7 +127,7 @@ CREATE TABLE `keywordTable` (
   `id` int(11) NOT NULL,
   `keyword` varchar(50) DEFAULT NULL,
   `idf` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `keywordTable`
@@ -199,7 +199,7 @@ INSERT INTO `keywordTable` (`id`, `keyword`, `idf`) VALUES
 CREATE TABLE `outgoingUrl` (
   `sourceUrl` int(11) NOT NULL,
   `destinationUrl` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `outgoingUrl`
@@ -265,7 +265,7 @@ CREATE TABLE `search_history` (
   `user_id` int(11) NOT NULL,
   `query` varchar(2048) NOT NULL,
   `search_time` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `search_history`
@@ -296,7 +296,9 @@ INSERT INTO `search_history` (`id`, `user_id`, `query`, `search_time`) VALUES
 (38, 7, 'favicon', '2025-04-09 01:51:08'),
 (39, 7, 'websites', '2025-04-09 02:01:42'),
 (40, 7, 'best webpages', '2025-04-09 02:02:19'),
-(41, 7, 'best webpages websites', '2025-04-09 02:02:32');
+(41, 7, 'best webpages websites', '2025-04-09 02:02:32'),
+(42, 7, 'favicon', '2025-04-09 16:14:31'),
+(43, 7, 'favicon', '2025-04-09 16:15:11');
 
 -- --------------------------------------------------------
 
@@ -316,7 +318,7 @@ CREATE TABLE `urlInfo` (
   `trustRank` float DEFAULT NULL,
   `Rank` float DEFAULT NULL,
   `doc_length` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `urlInfo`
@@ -379,7 +381,7 @@ CREATE TABLE `users` (
   `profile_icon` varchar(255) DEFAULT NULL,
   `reset_token` varchar(64) DEFAULT NULL,
   `reset_expiry` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
@@ -392,7 +394,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password_hash`, `created_at`, `
 (4, 'zidan', 'eitherengageordie@gmail.com', '$2y$12$cHhpdrBvvKrPXzJ/uG7ovO2ar3IywxQWlpo8KKAipj5pL/WzURuHG', '2025-03-25 11:03:08', 'uploads/apple-touch-icon1.png', '792595', 1742919086),
 (5, 'zidan420', 'whocare@asm', '$2y$12$9h53XxuAVDexYad/BESxyOECWCMc37bpwp9e6n8ZIsoPi3kjFsJnm', '2025-04-06 13:49:29', 'uploads/apple-touch-icon2.png', NULL, NULL),
 (6, 'zidan100', 'zidan100@gmail.com', '$2y$12$Cd45wH3mU.65Soeo2fDlBuUVBvShYD5QkzUKALBFjYX6oui9BjLna', '2025-04-06 16:14:46', NULL, NULL, NULL),
-(7, 'zidan1', 'zk@gm', '$2y$12$l53q0Qbq48arinifKU2j8OUqumPyqYA2nVfcrZUF3eqMIfr3f.byW', '2025-04-08 15:06:01', NULL, NULL, NULL);
+(7, 'zidan1', 'zk@gm', '$2y$12$l53q0Qbq48arinifKU2j8OUqumPyqYA2nVfcrZUF3eqMIfr3f.byW', '2025-04-08 15:06:01', 'uploads/apple-touch-icon3.png', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -404,14 +406,15 @@ CREATE TABLE `user_sites` (
   `user_id` int(11) NOT NULL,
   `site_url` varchar(300) NOT NULL,
   `is_web_master` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user_sites`
 --
 
 INSERT INTO `user_sites` (`user_id`, `site_url`, `is_web_master`) VALUES
-(5, 'https://matuailtravels.com', 1);
+(5, 'https://matuailtravels.com', 1),
+(7, 'https://matuailtravels.com', 1);
 
 --
 -- Indexes for dumped tables
@@ -478,7 +481,7 @@ ALTER TABLE `keywordTable`
 -- AUTO_INCREMENT for table `search_history`
 --
 ALTER TABLE `search_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `urlInfo`
