@@ -11,8 +11,18 @@ require_once "mysql_func.php";
 $memcached = new Memcached();
 $memcached->addServer("127.0.0.1", 11211);
 
-$query = trim($_GET["query"] ?? "");
-if (!$query) {
+// Get advanced search parameters
+$and_query = trim($_GET["and"] ?? "");
+$or_query = trim($_GET["or"] ?? "");
+$nor_query = trim($_GET["nor"] ?? "");
+$basic_query = trim($_GET["query"] ?? "");
+
+// Determine query type
+$is_advanced = !empty($and_query) || !empty($or_query) || !empty($nor_query);
+$query = $is_advanced ? compact("and_query", "or_query", "nor_query") : $basic_query;
+
+// Redirect to index if no query provided
+if (!$basic_query && !$is_advanced) {
     header("Location: index.php");
     exit();
 }
@@ -24,8 +34,9 @@ if ($user_logged_in) {
     /* get profile icon */
     $profile_icon = $conn->get_profile_icon($user_id)->fetch_assoc()["profile_icon"] ?? "images/default-user.svg";
 
-    /* Save search history if user is logged in */
-    $conn->insert_data(["user_id" => $user_id, "query" => $query], "search_history");
+    /* Save search history (use basic_query or a stringified advanced query) */
+    $history_query = $is_advanced ? json_encode($query) : $basic_query;
+    $conn->insert_data(["user_id" => $user_id, "query" => $history_query], "search_history");
 } else {
     $profile_icon = "images/default-user.svg";
 }
@@ -34,10 +45,10 @@ $results_per_page = 10;
 $page = isset($_GET["page"]) ? max(1, intval($_GET["page"])) : 1;
 $offset = ($page - 1) * $results_per_page; /* 0, $results_per_page, $results_per_page*2 ... */
 
-[$results, $total_results] = $conn->search($query, $offset, $results_per_page);
-
 // Create a unique cache key based on query and page
-$cache_key = "search:" . md5(strtolower($query)) . ":page" . $page;
+$cache_key = $is_advanced
+    ? "search:adv:" . md5(strtolower($and_query . $or_query . $nor_query)) . ":page" . $page
+    : "search:" . md5(strtolower($query)) . ":page" . $page;
 
 // Check Memcached for cached results
 $cached_data = $memcached->get($cache_key);
@@ -47,13 +58,21 @@ if ($cached_data !== false) {
     $source = "Cached";
 } else {
     // Cache miss: Query the database
-    [$results, $total_results] = $conn->search($query, $offset, $results_per_page);
+    [$results, $total_results] = $is_advanced
+        ? $conn->advanced_search($and_query, $or_query, $nor_query, $offset, $results_per_page)
+        : $conn->search($query, $offset, $results_per_page);
 
     // Store results in Memcached for 60 seconds
     $memcached->set($cache_key, json_encode([$results, $total_results]), 60);
     $source = "Fresh";
 }
 $total_pages = ceil($total_results / $results_per_page);
+
+$display_query = $is_advanced
+    ? ($and_query ? "AND: $and_query " : "") .
+        ($or_query ? "OR: $or_query " : "") .
+        ($nor_query ? "NOT: $nor_query" : "")
+    : $basic_query;
 ?>
 <html lang="en">
 <head>
@@ -121,7 +140,7 @@ $total_pages = ceil($total_results / $results_per_page);
             </button>
         </form>
         <hr>
-        <h2>Search Results for "<?= htmlspecialchars($query) ?>"(<?= $source ?>)</h2>
+        <h2>Search Results for "<?= htmlspecialchars($display_query) ?>" (<?= $source ?>)</h2>
         <p><?= $total_results ?> results found</p>
 
         <!-- Search Results -->
@@ -130,6 +149,7 @@ $total_pages = ceil($total_results / $results_per_page);
                 <?php foreach ($results as $row): ?>
                     <li class="list-group-item search-result">
                         <h3>
+                            <!-- To-do: href is vulnerable to XSS -->
                             <a href='<?= htmlspecialchars($row["url"]) ?>'>
                                 <?= htmlspecialchars($row["title"] ?? "No Title") ?>
                             </a>

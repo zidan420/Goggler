@@ -50,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="dropdown-menu p-0 border-info text-white">
                             <a href="image_search.php">Image Search</a>
                             <a href="advanced_search.php">Advanced Search</a>
+                            <a href="web_master.php">Web Master</a>
                         </div>
                     </div>
                 </li>
@@ -59,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </header>
         <main class="d-flex flex-column justify-content-center align-items-center flex-grow-1">
             <h2 class="text-center">Sign Up</h2>
-            <form action="#" method="POST" class="w-100 p-3">
+            <form method="POST" class="w-100 p-3">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" name="username" id="username" class="form-control" placeholder="Enter your username" required>

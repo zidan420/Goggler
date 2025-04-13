@@ -294,6 +294,7 @@ class MySql
         }
     }
 
+    /* returns Array( [doc_id] => score,  .. )*/
     function calculate_bm25($query_terms, $k1 = 1.5, $b = 0.75)
     {
         // Get average document length
@@ -365,6 +366,107 @@ class MySql
             $doc_id = $this->conn->real_escape_string($doc_id);
             $result = $this->conn->query("SELECT url, title, description FROM urlInfo WHERE id = '$doc_id'");
             /* if the result is not empty, insert result */
+            if ($row = $result->fetch_assoc()) {
+                $results[] = $row;
+            }
+        }
+
+        return [$results, $total_count];
+    }
+
+    function advanced_search($and_query, $or_query, $nor_query, $offset, $results_per_page)
+    {
+        // Initialize scores arrays
+        $and_scores = [];
+        $or_scores = [];
+        $nor_scores = [];
+        $final_scores = [];
+
+        /* Process AND query (all terms must appear) */
+        if (!empty($and_query)) {
+            $and_terms = preg_split("/\s+/", trim($and_query));
+            // Calculate BM25 for each term individually to ensure all are present
+            $term_scores = [];
+            foreach ($and_terms as $term) {
+                $term_scores[$term] = $this->calculate_bm25([$term]);
+            }
+
+            // Intersect results: keep documents with all AND terms
+            $doc_ids = null;
+            foreach ($term_scores as $term => $scores) {
+                /* current doc ids */
+                $current_ids = array_keys($scores);
+                if ($doc_ids === null) {
+                    $doc_ids = $current_ids;
+                } else {
+                    $doc_ids = array_intersect($doc_ids, $current_ids);
+                }
+            }
+
+            // Compute combined BM25 score for AND documents
+            foreach ($doc_ids as $doc_id) {
+                $score = 0;
+                foreach ($term_scores as $scores) {
+                    if (isset($scores[$doc_id])) {
+                        $score += $scores[$doc_id];
+                    }
+                }
+                if ($score > 0) {
+                    $and_scores[$doc_id] = $score;
+                }
+            }
+            $final_scores = $and_scores;
+        }
+
+        // Process OR query (at least one term must appear)
+        if (!empty($or_query)) {
+            $or_terms = preg_split("/\s+/", trim($or_query));
+            $or_scores = $this->calculate_bm25($or_terms);
+            if (empty($final_scores)) {
+                // If no AND query, use OR scores directly
+                $final_scores = $or_scores;
+            } else {
+                // Boost AND-matching documents with OR scores
+                foreach ($or_scores as $doc_id => $score) {
+                    if (isset($final_scores[$doc_id])) {
+                        $final_scores[$doc_id] += $score * 0.3; // Lower weight for OR
+                    }
+                    // Don't include OR-only documents if AND is specified
+                }
+            }
+        }
+
+        // Process NOR query (exclude documents with these terms)
+        if (!empty($nor_query)) {
+            $nor_terms = preg_split("/\s+/", trim($nor_query));
+            $nor_scores = $this->calculate_bm25($nor_terms);
+            // Exclude documents matching NOR terms
+            foreach ($nor_scores as $doc_id => $score) {
+                unset($final_scores[$doc_id]);
+            }
+        }
+
+        // Handle empty results
+        if (empty($final_scores) && (!empty($and_query) || !empty($or_query))) {
+            return [[], 0];
+        }
+
+        // Sort by score descending
+        arsort($final_scores);
+
+        // Total count of results
+        $total_count = count($final_scores);
+
+        $results = [];
+        $doc_ids = array_keys($final_scores);
+
+        // Apply pagination
+        $paginated_ids = array_slice($doc_ids, $offset, $results_per_page);
+
+        // Fetch details for paginated document IDs
+        foreach ($paginated_ids as $doc_id) {
+            $doc_id = $this->conn->real_escape_string($doc_id);
+            $result = $this->conn->query("SELECT url, title, description FROM urlInfo WHERE id = '$doc_id'");
             if ($row = $result->fetch_assoc()) {
                 $results[] = $row;
             }

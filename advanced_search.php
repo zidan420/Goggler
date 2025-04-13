@@ -6,6 +6,8 @@ require_once "config.php";
 $user_logged_in = isset($_SESSION["user_id"]);
 if ($user_logged_in) {
     $user_id = $_SESSION["user_id"];
+
+    /* get profile icon */
     $profile_icon = $conn->get_profile_icon($user_id)->fetch_assoc()["profile_icon"] ?? "images/default-user.svg";
 } else {
     $profile_icon = "images/default-user.svg";
@@ -61,22 +63,22 @@ if ($user_logged_in) {
         <main class="d-flex flex-column align-items-center flex-grow-1">
             <h1 class="mt-2">Advanced Search</h1>
             <hr class="w-100" />
-            <form class="col-11 col-md-10 col-lg-8 d-flex flex-column">
+            <form action="search.php" class="col-11 col-md-10 col-lg-8 d-flex flex-column">
                 <h3>Search for pages that contain</h3>
                 <div>
                     <label>all these words:</label>
-                    <input type="text" name="and-search" />
+                    <input type="text" name="and" />
                 </div>
                 <div>
                     <label>any of these words:</label>
-                    <input type="text" name="or-search" />
+                    <input type="text" name="or" />
                 </div>
                 <div>
                     <label>none of these words:</label>
-                    <input type="text" name="nor-search" />
+                    <input type="text" name="nor" />
                 </div>
                 <div class="justify-content-end">
-                    <button id="submit" class="px-4 py-2 rounded-1 border-0 text-white" type="button">Search</button>
+                    <button id="submit" class="px-4 py-2 rounded-1 border-0 text-white" type="submit">Search</button>
                 </div>
             </form>
         </main>

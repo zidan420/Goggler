@@ -72,18 +72,7 @@ if ($user_logged_in) {
                             d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                     </svg>
                 </button>
-                <button type="button" id="bookmark-btn" class="btn btn-outline-info ms-2" title="Bookmark this query">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
-                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.546a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                    </svg>
-                </button>
             </form>
-            <!-- Display Bookmarks -->
-            <div class="mt-4 text-center">
-                <h3>Your Bookmarks</h3>
-                <ul class="list-group list-group-flush w-50 mx-auto" id="bookmark-list">
-                </ul>
-            </div>
         </main>
         <footer class="d-flex justify-content-end">
             <ul class="m-2">
@@ -100,56 +89,6 @@ if ($user_logged_in) {
                 </li>
             </ul>
         </footer>
-        <script>
-            /* load bookmarks from localStorage */
-            function loadBookmarks() {
-                const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
-                const bookmarkList = document.getElementById('bookmark-list');
-                bookmarkList.innerHTML = ''; // Clear existing list
-
-                bookmarks.slice(0, 5).forEach((query, index) => { // Limit to 5
-                    const li = document.createElement('li');
-                    li.className = 'list-group-item bg-transparent text-white border-info d-flex justify-content-between align-items-center';
-                    li.innerHTML = `
-                        <a href="search.php?query=${encodeURIComponent(query)}" class="text-info">
-                            ${query}
-                        </a>
-                        <button class="btn btn-sm btn-outline-danger ms-2" onclick="deleteBookmark(${index})">X</button>
-                    `;
-                    bookmarkList.appendChild(li);
-                });
-            }
-
-            function saveBookmark(query) {
-                const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
-                if (!bookmarks.includes(query)) { // Avoid duplicates
-                    bookmarks.unshift(query); // Add to start
-                    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-                }
-            }
-
-            function deleteBookmark(index) {
-                const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
-                bookmarks.splice(index, 1); // Remove at index
-                localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-                loadBookmarks(); // Refresh list
-            }
-
-            /* Bookmark button event listener */
-            document.getElementById('bookmark-btn').addEventListener('click', function() {
-                const query = document.getElementById('query').value.trim();
-                if (query) {
-                    saveBookmark(query);
-                    alert('Query bookmarked successfully!');
-                    loadBookmarks();
-                } else {
-                    alert('Please enter a query to bookmark.');
-                }
-            });
-
-            /* Load bookmarks on page load */
-            window.onload = loadBookmarks;
-        </script>
         <script src="sw-register.js"></script>
     </body>
 </html>
