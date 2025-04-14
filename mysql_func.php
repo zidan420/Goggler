@@ -474,5 +474,105 @@ class MySql
 
         return [$results, $total_count];
     }
+
+    function log_click($url_id, $user_id)
+    {
+        $url_id = $this->conn->real_escape_string($url_id);
+        $user_id = $this->conn->real_escape_string($user_id);
+        $click_date = date("Y-m-d");
+
+        $query = "INSERT INTO clicks (url_id, user_id, click_date, click_count) 
+                  VALUES ('$url_id', '$user_id', '$click_date', 1) 
+                  ON DUPLICATE KEY UPDATE click_count = click_count + 1";
+        $result = $this->conn->query($query);
+
+        return $result;
+    }
+
+    function get_performance_data($user_id, $range = "1m")
+    {
+        $user_id = (int) $user_id;
+        if ($user_id <= 0) {
+            error_log("Invalid user_id: $user_id");
+            return ["labels" => [], "clicks" => [], "totalClicks" => 0];
+        }
+
+        // Get user's single site
+        $site_query = "SELECT site_url FROM user_sites WHERE user_id = '$user_id' AND is_web_master = 1 LIMIT 1";
+        $site_result = $this->conn->query($site_query);
+
+        /* user is not a webmaster */
+        if (!$site_result || $site_result->num_rows === 0) {
+            error_log("No site found for user_id: $user_id");
+            return ["labels" => [], "clicks" => [], "totalClicks" => 0];
+        }
+
+        // Get url_id
+        $site_url = $this->conn->real_escape_string($site_result->fetch_assoc()["site_url"]);
+        $id_query = "SELECT id FROM urlInfo WHERE url like '$site_url%'";
+        $id_result = $this->conn->query($id_query);
+
+        /* user's site is not indexed */
+        if (!$id_result || $id_result->num_rows === 0) {
+            error_log("No url_id for site_url: $site_url");
+            return ["labels" => [], "clicks" => [], "totalClicks" => 0];
+        }
+
+        $url_id = (int) $id_result->fetch_assoc()["id"];
+
+        // Set date range
+        $end_date = date("Y-m-d");
+        $start_date = match ($range) {
+            "7d" => date("Y-m-d", strtotime("-6 days")), // 7 days inclusive
+            "1m" => date("Y-m-d", strtotime("-29 days")), // 30 days
+            "1y" => date("Y-m-d", strtotime("-364 days")), // 365 days
+            "all" => "2000-01-01", // Arbitrary old date
+            default => date("Y-m-d", strtotime("-29 days")),
+        };
+
+        // Fetch clicks
+        $query = "
+            SELECT click_date, click_count
+            FROM clicks
+            WHERE url_id = '$url_id'
+            AND click_date BETWEEN '$start_date' AND '$end_date'
+            ORDER BY click_date";
+        $result = $this->conn->query($query);
+        if (!$result) {
+            return ["labels" => [], "clicks" => [], "totalClicks" => 0];
+        }
+
+        $labels = [];
+        $clicks = [];
+        $total_clicks = 0;
+
+        // Initialize date range
+        $date = new DateTime($start_date);
+        $end = new DateTime($end_date);
+        $interval = new DateInterval("P1D");
+        $date_period = new DatePeriod($date, $interval, $end->modify("+1 day"));
+        foreach ($date_period as $d) {
+            $labels[] = $d->format("n/j/y");
+            $clicks[] = 0;
+        }
+
+        // Process clicks
+        while ($row = $result->fetch_assoc()) {
+            $click_date = (new DateTime($row["click_date"]))->format("n/j/y");
+            $click_count = (int) $row["click_count"];
+            $index = array_search($click_date, $labels);
+            /* if $click_date is in $labels */
+            if ($index !== false) {
+                $clicks[$index] += $click_count;
+                $total_clicks += $click_count;
+            }
+        }
+
+        return [
+            "labels" => $labels,
+            "clicks" => $clicks,
+            "totalClicks" => $total_clicks,
+        ];
+    }
 }
 ?>

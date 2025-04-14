@@ -28,6 +28,7 @@ if (!$basic_query && !$is_advanced) {
 }
 
 $user_logged_in = isset($_SESSION["user_id"]);
+$user_id = $user_logged_in ? $_SESSION["user_id"] : 0;
 if ($user_logged_in) {
     $user_id = $_SESSION["user_id"];
 
@@ -147,10 +148,16 @@ $display_query = $is_advanced
         <?php if (!empty($results)): ?>
             <ul class="list-group">
                 <?php foreach ($results as $row): ?>
+                    <?php
+                    $user_id = htmlspecialchars($user_id);
+                    $url_id = htmlspecialchars($conn->get_url_id($row["url"], "urlInfo"));
+                    $url = urlencode($row["url"]);
+                    $target_url = "click.php?user_id=" . $user_id . "&" . "url_id=" . $url_id . "&" . "url=" . $url;
+                    ?>
                     <li class="list-group-item search-result">
                         <h3>
                             <!-- To-do: href is vulnerable to XSS -->
-                            <a href='<?= htmlspecialchars($row["url"]) ?>'>
+                            <a href='<?= $target_url ?>'>
                                 <?= htmlspecialchars($row["title"] ?? "No Title") ?>
                             </a>
                         </h3>
@@ -206,5 +213,16 @@ $display_query = $is_advanced
             </li>
         </ul>
     </footer>
+    <script>
+    function logClick(urlId, userId) {
+        if (!userId) return; // Skip if not logged in
+        
+        /* AJAX request to log_click.php */
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "log_click.php", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify({ url_id: urlId, user_id: userId }));
+    }
+    </script>
 </body>
 </html>

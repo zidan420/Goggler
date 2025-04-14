@@ -5,6 +5,8 @@ error_reporting(E_ALL);
 
 $now = new DateTime();
 print_r($now);
+$abcdefg = "who cares";
+print_r($abcdg);
 
 /*
 $query = $_GET["q"] ?? "";
