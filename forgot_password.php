@@ -29,13 +29,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             /* Store token */
             $conn->set_token($token, $expiry, $user_id);
 
-            /* Send email with the token */
-            mail(
-                $email,
-                "Password Reset Code For Goggler",
-                "Your password reset code is: $token",
-                "From: zidanzihan187@gmail.com"
-            );
+            /* Send request for email with token */
+            $ch = curl_init("https://matuailtravels.com/reset_password.php");
+
+            /* Send json POST data to email server (api) */
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type:application/json"]);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(["token" => $token, "email" => $email]));
+
+            curl_exec($ch);
 
             $_SESSION["reset_email"] = $email;
             $success_message = "A reset code has been sent to your email.";

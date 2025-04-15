@@ -34,8 +34,14 @@ footer a:hover {
     display: block;
 }
 
+header .dropdown-menu,
+footer .dropdown-menu {
+    background-color: #1e2a44 !important;
+}
+
 footer .dropdown-menu {
     min-width: unset;
+    z-index: 1001;
 }
 
 main h1 {
@@ -116,4 +122,37 @@ form input {
     padding: 5px 10px;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
+}
+
+/* Feedback Modal */
+.modal-content {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ffff;
+    color: #fff;
+}
+.modal-header,
+.modal-footer {
+    border-color: #00ffff;
+}
+.modal-title {
+    color: #000;
+}
+.form-control {
+    background: transparent;
+    border: 1px solid #00ffff;
+    color: #fff;
+}
+.form-control:focus {
+    background: transparent;
+    border-color: #00ffff;
+    color: #fff;
+    box-shadow: none;
+}
+.btn-feedback {
+    background: #00ffff;
+    color: #000;
+    border: none;
+}
+.btn-feedback:hover {
+    background: #00cccc !important;
 }
