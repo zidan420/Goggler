@@ -1,5 +1,8 @@
 <?php
-require_once 'mysql_func.php';
+/* Change to appropriate directory */
+chdir("/var/www/html/goggler_zidan/");
+
+require_once "mysql_func.php";
 
 $config = parse_ini_file("config.ini");
 

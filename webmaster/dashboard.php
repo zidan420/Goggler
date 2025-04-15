@@ -40,7 +40,7 @@ if ($user_logged_in && $_SESSION["is_web_master"]) {
                             <a href="<?= $root ?>/advanced_search.php">Advanced Search</a>
                             <a href="<?= $root ?>/webmaster/dashboard.php">Overview</a>
                             <a href="<?= $root ?>/web_master.php">Performance</a>
-                            <a href="<?= $root ?>/web_master.php">URL Indexing</a>
+                            <a href="<?= $root ?>/webmaster/sitemap.php">URL Indexing</a>
                             <a href="<?= $root ?>/web_master.php">Removals</a>
                         </div>
                     </div>
@@ -69,7 +69,7 @@ if ($user_logged_in && $_SESSION["is_web_master"]) {
             <hr class="w-75">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-12 col-lg-10 chart-container bg-dark">
+                    <div class="col-12 col-lg-8 chart-container bg-dark">
                         <h3 class="text-center mb-3">Performance</h3>
                         <div class="btn-group d-flex justify-content-center mb-3" role="group">
                             <button class="btn btn-outline-light btn-sm mx-1" data-range="7d">7 Days</button>

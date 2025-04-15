@@ -13,6 +13,20 @@ class MySql
         $this->table = $table;
     }
 
+    function white_list(&$value, $allowed, $message)
+    {
+        if ($value === null) {
+            return $allowed[0];
+        }
+        /* STRICT search of $value in $allowed */
+        $key = array_search($value, $allowed, true);
+        if ($key === false) {
+            throw new InvalidArgumentException($message);
+        } else {
+            return $value;
+        }
+    }
+
     function insert_data($data, $table = "")
     {
         if ($table != "") {
@@ -518,7 +532,11 @@ class MySql
             return ["labels" => [], "clicks" => [], "totalClicks" => 0];
         }
 
-        $url_id = (int) $id_result->fetch_assoc()["id"];
+        // Collect all url_ids
+        $url_ids = [];
+        while ($row = $id_result->fetch_assoc()) {
+            $url_ids[] = (int) $row["id"];
+        }
 
         // Set date range
         $end_date = date("Y-m-d");
@@ -530,11 +548,12 @@ class MySql
             default => date("Y-m-d", strtotime("-29 days")),
         };
 
-        // Fetch clicks
+        // Fetch clicks for all url_ids
+        $url_ids_str = implode(",", $url_ids);
         $query = "
-            SELECT click_date, click_count
+            SELECT click_date, SUM(click_count) as click_count
             FROM clicks
-            WHERE url_id = '$url_id'
+            WHERE url_id IN ($url_ids_str)
             AND click_date BETWEEN '$start_date' AND '$end_date'
             ORDER BY click_date";
         $result = $this->conn->query($query);

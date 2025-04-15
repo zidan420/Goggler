@@ -89,6 +89,70 @@ if ($user_logged_in) {
                 </li>
             </ul>
         </footer>
+        <div class="chat-icon position-fixed p-2 rounded-5" onclick="toggleChatbot()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+              <path d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105"/>
+            </svg>
+        </div>
+        <div class="chatbot-container position-fixed" id="chatbot">
+            <div class="chatbot-header">Goggler Chat</div>
+            <div class="chatbot-messages" id="chatMessages"></div>
+            <form class="chatbot-input" onsubmit="sendMessage(event)">
+                <input type="text" id="chatInput" placeholder="Type a message..." autocomplete="off" />
+                <button type="submit">Send</button>
+            </form>
+        </div>
+        <script>
+            function toggleChatbot() {
+                const chatbot = document.getElementById("chatbot");
+                chatbot.style.display = chatbot.style.display === "flex" ? "none" : "flex";
+            }
+
+            function sendMessage(event) {
+                event.preventDefault();
+                const input = document.getElementById("chatInput");
+                const message = input.value.trim();
+                if (!message) return;
+
+                const messages = document.getElementById("chatMessages");
+                
+                // Add user message
+                const userMsg = document.createElement("div");
+                userMsg.className = "user-message";
+                userMsg.textContent = message;
+                messages.appendChild(userMsg);
+
+                // Clear input
+                input.value = "";
+
+                // Scroll to bottom
+                messages.scrollTop = messages.scrollHeight;
+
+                // Send to backend (placeholder)
+                fetch("chatbot.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: message })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Add bot response
+                    const botMsg = document.createElement("div");
+                    botMsg.className = "bot-message";
+                    botMsg.innerHTML = data.malicious ? "<p>⚠️ <strong>This URL is malicious!</strong></p><p>🛡️ <strong>Attack Type:</strong>".concat(data.attack_type, "</p>") : "<p>✅ <strong>This URL appears safe.</strong></p>";
+                    messages.appendChild(botMsg);
+                    messages.scrollTop = messages.scrollHeight;
+                })
+                .catch(error => {
+                    console.error("Chat error:", error);
+                    const botMsg = document.createElement("div");
+                    botMsg.className = "bot-message";
+                    botMsg.textContent = "Error connecting to chatbot.";
+                    messages.appendChild(botMsg);
+                    messages.scrollTop = messages.scrollHeight;
+                });
+            }
+        </script>
         <script src="sw-register.js"></script>
     </body>
 </html>

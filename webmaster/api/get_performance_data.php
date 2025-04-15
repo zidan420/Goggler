@@ -2,10 +2,12 @@
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
+/* Change to appropriate directory */
+chdir("/var/www/html/goggler_zidan/");
+
 session_start();
-$root = "../..";
-require_once "$root/config.php";
-require_once "$root/mysql_func.php";
+require_once "config.php";
+require_once "mysql_func.php";
 
 header("Content-Type: application/json");
 
