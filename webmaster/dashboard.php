@@ -66,17 +66,23 @@ if ($user_logged_in && $_SESSION["is_web_master"]) {
         </header>
         <main class="d-flex flex-column justify-content-center align-items-center flex-grow-1">
             <h1>Overview</h1>
-            <hr>
-            <div class="chart-container">
-                <h3>Performance</h3>
-                <div class="range-buttons mb-3">
-                    <button class="btn btn-outline-light btn-sm me-1" data-range="7d">7 Days</button>
-                    <button class="btn btn-outline-light btn-sm me-1 active" data-range="1m">1 Month</button>
-                    <button class="btn btn-outline-light btn-sm me-1" data-range="1y">1 Year</button>
-                    <button class="btn btn-outline-light btn-sm" data-range="all">Older</button>
+            <hr class="w-75">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10 chart-container bg-dark">
+                        <h3 class="text-center mb-3">Performance</h3>
+                        <div class="btn-group d-flex justify-content-center mb-3" role="group">
+                            <button class="btn btn-outline-light btn-sm mx-1" data-range="7d">7 Days</button>
+                            <button class="btn btn-outline-light btn-sm mx-1 active" data-range="1m">1 Month</button>
+                            <button class="btn btn-outline-light btn-sm mx-1" data-range="1y">1 Year</button>
+                            <button class="btn btn-outline-light btn-sm mx-1" data-range="all">Older</button>
+                        </div>
+                        <p id="totalClicks" class="text-center mb-3"></p>
+                        <div class="ratio ratio-16x9">
+                            <canvas id="performanceChart" class="w-100 h-100"></canvas>
+                        </div>
+                    </div>
                 </div>
-                <p id="totalClicks"></p>
-                <canvas id="performanceChart" width="800" height="400"></canvas>
             </div>
         </main>
         <footer class="d-flex justify-content-end">
@@ -103,7 +109,7 @@ if ($user_logged_in && $_SESSION["is_web_master"]) {
         };
         const performanceData = <?php echo json_encode($performance_data); ?>;
         let chart = null;
-        function renderPerformanceChart(data, range='1m') {
+        function renderPerformanceChart(data) {
             const ctx = document.getElementById("performanceChart").getContext("2d");
             document.getElementById("totalClicks").textContent = `${data.totalClicks} total web search clicks`;
             /* determine step size dynamically */
@@ -151,7 +157,7 @@ if ($user_logged_in && $_SESSION["is_web_master"]) {
         }
         
         /* AJAX request to get_performance_data.php */
-        const buttons = document.querySelectorAll(".range-buttons button");
+        const buttons = document.querySelectorAll(".btn");
         buttons.forEach(button => {
             button.addEventListener("click", async () => {
                 const range = button.getAttribute("data-range");
@@ -166,19 +172,19 @@ if ($user_logged_in && $_SESSION["is_web_master"]) {
                     const newData = await response.json();
                     if (newData.error) {
                         console.error("Server error:", newData.error);
-                        renderPerformanceChart(mockData, range);
+                        renderPerformanceChart(mockData);
                         return;
                     }
-                    renderPerformanceChart(newData, range);
+                    renderPerformanceChart(newData);
                 } catch (error) {
                     console.error("Fetch error:", error);
-                    renderPerformanceChart(mockData, range);
+                    renderPerformanceChart(mockData);
                 }
             });
         });
         
         /* render the chart with performanceData */
-        renderPerformanceChart(performanceData, '1m');
+        renderPerformanceChart(performanceData.labels.length ? performanceData : mockData);
         </script>
     </body>
 </html>
