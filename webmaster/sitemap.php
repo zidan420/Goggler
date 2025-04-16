@@ -39,9 +39,7 @@ if ($user_logged_in && $_SESSION["is_web_master"]) {
                             <a href="<?= $root ?>/image_search.php">Image Search</a>
                             <a href="<?= $root ?>/advanced_search.php">Advanced Search</a>
                             <a href="<?= $root ?>/webmaster/dashboard.php">Overview</a>
-                            <a href="<?= $root ?>/web_master.php">Performance</a>
                             <a href="<?= $root ?>/webmaster/sitemap.php">URL Indexing</a>
-                            <a href="<?= $root ?>/web_master.php">Removals</a>
                         </div>
                     </div>
                 </li>

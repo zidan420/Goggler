@@ -73,6 +73,36 @@ if ($user_logged_in) {
                     </svg>
                 </button>
             </form>
+            <!-- Add ShortCurt Button -->
+
+
+            <div id="shortcuts-container">
+                <!-- Add shortcut button -->
+                 <div class="shortcut-tile" id="add-shortcut">
+                    <div class="add-icon">
+                        <i class="bi bi-bookmark-plus-fill"></i>
+                    </div>
+                    <div class="shortcut-text">Add shortcut</div>
+                 </div>
+       
+             <!-- Shortcuts will be added here by JavaScript -->
+            </div>
+
+
+      <!-- Modal for adding a new shortcut -->
+      <div id="shortcut-modal" class="modal">
+   <div class="modal-content">
+      <h2>Add Shortcut</h2>
+      <label for="site-name">Name:</label>
+      <input type="text" id="site-name" placeholder="Google">
+      <label for="site-url">URL:</label>
+      <input type="url" id="site-url" placeholder="https://www.google.com">
+      <div class="modal-buttons">
+         <button id="cancel-btn">Cancel</button>
+         <button id="add-btn">Add</button>
+      </div>
+   </div>
+</div>
         </main>
         <footer class="d-flex justify-content-end">
             <ul class="m-2">
@@ -195,6 +225,142 @@ if ($user_logged_in) {
                 form.reset();
             });
         </script>
+        <script>
+    // Get DOM elements
+    const addShortcutBtn = document.getElementById('add-shortcut');
+    const modal = document.getElementById('shortcut-modal');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const addBtn = document.getElementById('add-btn');
+    const siteNameInput = document.getElementById('site-name');
+    const siteUrlInput = document.getElementById('site-url');
+    const shortcutsContainer = document.getElementById('shortcuts-container');
+
+
+    // Open modal when clicking the add shortcut button
+    addShortcutBtn.addEventListener('click', () => {
+        modal.style.display = 'block';
+        siteNameInput.value = '';
+        siteUrlInput.value = '';
+    });
+
+
+    // Close modal when clicking the cancel button
+    cancelBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+
+    // Add new shortcut when clicking the add button
+    addBtn.addEventListener('click', () => {
+        const name = siteNameInput.value.trim();
+        let url = siteUrlInput.value.trim();
+       
+        if (name && url) {
+            // Add http:// if no protocol specified
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'http://' + url;
+            }
+           
+            // Create new shortcut element
+            const shortcut = createShortcut(name, url);
+           
+            // Insert the new shortcut before the add button
+            shortcutsContainer.insertBefore(shortcut, addShortcutBtn);
+           
+            // Close the modal
+            modal.style.display = 'none';
+           
+            // Save shortcuts to localStorage
+            saveShortcuts();
+        }
+    });
+
+
+    // Click outside the modal to close it
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+
+    // Function to create a new shortcut element
+
+
+function createShortcut(name, url) {
+    const shortcut = document.createElement('a');
+    shortcut.className = 'site-shortcut';
+    shortcut.href = url;
+    shortcut.target = '_blank'; // Open in new tab
+   
+    const icon = document.createElement('div');
+    icon.className = 'site-icon';
+    icon.textContent = name.charAt(0).toUpperCase();
+   
+    const text = document.createElement('div');
+    text.className = 'shortcut-text';
+    text.textContent = name;
+   
+    // Create delete button
+    const deleteBtn = document.createElement('div');
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.innerHTML = '×';
+    deleteBtn.title = 'Delete shortcut';
+   
+    // Add click event to delete button
+    deleteBtn.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent the link from being followed
+        e.stopPropagation(); // Prevent event bubbling
+        shortcutsContainer.removeChild(shortcut);
+        saveShortcuts(); // Update localStorage after deletion
+    });
+   
+    shortcut.appendChild(icon);
+    shortcut.appendChild(text);
+    shortcut.appendChild(deleteBtn);
+   
+    return shortcut;
+}
+
+
+    // Function to save shortcuts to localStorage
+    function saveShortcuts() {
+        const shortcuts = [];
+        const shortcutElements = document.querySelectorAll('.site-shortcut');
+       
+        shortcutElements.forEach(el => {
+            if (!el.id || el.id !== 'add-shortcut') {
+                shortcuts.push({
+                    name: el.querySelector('.shortcut-text').textContent,
+                    url: el.href
+                });
+            }
+        });
+       
+        localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
+    }
+
+
+    // Function to load shortcuts from localStorage
+    function loadShortcuts() {
+        const saved = localStorage.getItem('shortcuts');
+       
+        if (saved) {
+            const shortcuts = JSON.parse(saved);
+           
+            shortcuts.forEach(item => {
+                const shortcut = createShortcut(item.name, item.url);
+                shortcutsContainer.insertBefore(shortcut, addShortcutBtn);
+            });
+        }
+    }
+
+
+    // Load saved shortcuts when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        loadShortcuts();
+    });
+</script>
         <script src="sw-register.js"></script>
     </body>
 </html>

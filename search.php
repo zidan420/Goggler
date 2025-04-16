@@ -42,7 +42,7 @@ if ($user_logged_in) {
     $profile_icon = "images/default-user.svg";
 }
 
-$results_per_page = 10;
+$results_per_page = 5;
 $page = isset($_GET["page"]) ? max(1, intval($_GET["page"])) : 1;
 $offset = ($page - 1) * $results_per_page; /* 0, $results_per_page, $results_per_page*2 ... */
 
